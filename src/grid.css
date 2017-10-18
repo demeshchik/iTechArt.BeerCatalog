@@ -1,0 +1,41 @@
+.container,
+.row {
+    width: 100%;
+    float: left;
+}
+
+.cl-md-offset-1 {
+    margin-left: 10%;
+}
+
+.cl-md-3 {
+    width: 33.33%;
+    float: left;
+}
+
+.cl-md-8 {
+    width: 80%;
+    float: left;
+}
+
+@media screen and (max-width: 640px) {
+    .cl-md-8 {
+        width: 100%;
+    }
+
+    .cl-md-offset-1 {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cl-sm-5 {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .cl-xs {
+        width: 100%;
+    }
+}

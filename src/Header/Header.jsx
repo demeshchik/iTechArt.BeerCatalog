@@ -1,6 +1,7 @@
 import React from 'react'
 import Menu from '../Menu/Menu'
 import * as styles from './styles.css'
+import * as grid from '../grid.css'
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -15,11 +16,13 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <header>
-                <div className={styles.navbar}>
+            <header className={grid.container}>
+                <div className={styles.navbar + " " + grid.row}>
                     <i className="fa fa-bars" aria-hidden="true" onClick={this.show}></i>
+
                     <span className={styles.title}>Beer catalog</span>
                 </div>
+
                 <Menu ref="menu" />
             </header>
         )
