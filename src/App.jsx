@@ -5,11 +5,12 @@ import Catalog from './Catalog/Catalog'
 import Fave from './Catalog/Fave'
 
 import * as grid from './grid.css'
+import * as styles from './styles.css'
 
 export default class App extends React.Component {
     render() {
         return (
-            <div>
+            <div className={styles.app}>
                 <Header />
                 <main className={grid.container}>
                     <Switch>

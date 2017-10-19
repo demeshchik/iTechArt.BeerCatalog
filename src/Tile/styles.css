@@ -1,0 +1,30 @@
+.tile__title {
+    font-weight: normal;
+}
+
+.tile__tagline {
+    font-weight: 100;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.tile__header {
+    height: 100px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.tile__content {
+    height: 100px;
+    margin: 10px;
+    background: #7F7F7F;
+    display: flex;
+    flex-flow: column;
+    padding: 15px;
+    color: #ffffff;
+}
+
+.tile__title {
+    margin: 0;
+}
+

@@ -8,7 +8,7 @@ export default class Catalog extends React.Component {
         super(props);
         this.state = {
             page: 1,
-            results: ""
+            results: []
         };
 
         this.prevResults = this.prevResults.bind(this);
@@ -19,7 +19,7 @@ export default class Catalog extends React.Component {
     getBeers(page) {
         let self = this;
         let xhr = new XMLHttpRequest();
-        let path = 'https://api.punkapi.com/v2/beers/' + page;
+        let path = 'https://api.punkapi.com/v2/beers/?page=' + page + '&per_page=9';
 
         xhr.open('get', path, true);
         xhr.send();
@@ -31,7 +31,7 @@ export default class Catalog extends React.Component {
                 } else {
                     self.setState({
                         page: page,
-                        results: JSON.stringify(JSON.parse(xhr.responseText), null, 4)
+                        results: JSON.parse(xhr.responseText)
                     })
                 }
             }
@@ -47,15 +47,15 @@ export default class Catalog extends React.Component {
     }
 
     componentDidMount() {
-        //this.getBeers(this.state.page);
+        this.getBeers(this.state.page);
     }
 
     render() {
         let tiles = [];
 
-        for (let i = 0; i < 10; i++) {
-            tiles.push(<Tile key={i} />)
-        }
+        this.state.results.forEach((item, index) => {
+            tiles.push(<Tile key={index} tile={item} />)
+        });
 
         return (
             <div className={grid['cl-md-offset-1'] + " " + grid['cl-md-8']}>
