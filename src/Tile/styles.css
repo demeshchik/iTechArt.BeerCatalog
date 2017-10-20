@@ -1,3 +1,12 @@
+.tile {
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.tile:hover > .tile__content {
+    box-shadow: 0 0 8px 0 #7F7F7F;
+}
+
 .tile__title {
     font-weight: normal;
 }
@@ -5,7 +14,8 @@
 .tile__tagline {
     font-weight: 100;
     font-size: 14px;
-    margin-bottom: 10px;
+    flex-grow: 1;
+
 }
 
 .tile__header {
@@ -16,15 +26,28 @@
 
 .tile__content {
     height: 100px;
-    margin: 10px;
     background: #7F7F7F;
-    display: flex;
-    flex-flow: column;
     padding: 15px;
     color: #ffffff;
+    display: flex;
+    flex-flow: column;
 }
 
 .tile__title {
     margin: 0;
 }
 
+.tile__button {
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.tile__button:hover {
+    cursor: pointer;
+}
+
+.tile__link {}
+
+.tile__button:hover > .tile__link {
+    text-decoration: underline;
+}

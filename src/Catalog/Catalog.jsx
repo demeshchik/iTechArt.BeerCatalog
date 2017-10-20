@@ -58,16 +58,16 @@ export default class Catalog extends React.Component {
         });
 
         return (
-            <div className={grid['cl-md-offset-1'] + " " + grid['cl-md-8']}>
+            <div className={grid['cl-xl-offset-2'] + ' '  +  grid['cl-lg-offset-1'] + " " + grid['cl-xl-6'] + ' ' + grid['cl-lg-8'] + ' ' + grid['cl-sm-10']}>
 
-                <div className={grid.row}>
+                <div className={grid.container}>
                     <section>
                         This is placeholder for search box
                     </section>
                 </div>
 
-                <div className={grid.row}>
-                    <section className={styles.catalog_inner}>
+                <div className={grid.container}>
+                    <section className={styles.catalog_inner  + ' ' + grid.container + ' ' + grid['container-masonry-sm']}>
                         {tiles}
                     </section>
                 </div>
