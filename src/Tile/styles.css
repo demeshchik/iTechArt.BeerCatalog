@@ -48,6 +48,11 @@
 
 .tile__link {}
 
+.tile__buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 .tile__button:hover > .tile__link {
     text-decoration: underline;
 }

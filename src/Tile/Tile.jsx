@@ -8,6 +8,9 @@ export default class Tile extends React.Component {
         super(props);
         this.openAction = this.openAction.bind(this);
         this.faveAction = this.faveAction.bind(this);
+        this.state = {
+            isFave: false
+        }
     }
 
     openAction() {
@@ -15,25 +18,33 @@ export default class Tile extends React.Component {
     }
 
     faveAction() {
-        alert(this.props.tile.id);
+        let faves = typeof localStorage.getItem('faves') !== 'string' ? [] : JSON.parse(localStorage.getItem('faves'));
+
+        this.state.isFave ? faves.splice(faves.indexOf(this.props.tile.id), 1) : faves.push(this.props.tile.id);
+
+        this.setState({
+            isFave: !this.state.isFave
+        }, () => {
+            localStorage.setItem('faves', JSON.stringify(faves));
+        });
     }
 
     render() {
         return (
-            <div className={styles.tile + ' ' + grid['cl-xl-3'] + " " + grid['cl-masonry-sm'] + " " + grid['cl-xs']}>
+            <div className={styles.tile + ' ' + grid['cl-xl-3'] + ' ' + grid['cl-masonry-sm'] + ' ' + grid['cl-xs']}>
                 <div className={styles.tile__header}>
                     <img src={this.props.tile.image_url} className={grid['img-responsive']} />
                 </div>
                 <div className={styles.tile__content}>
                     <h3 className={styles.tile__title}>{this.props.tile.name}</h3>
                     <span className={styles.tile__tagline}>{this.props.tile.tagline}</span>
-                    <div className={styles.tile__buttons}>
+                    <div className={styles.tile__buttons + ' ' + grid['cl-xl-6'] + ' ' + grid['cl-lg-8'] + ' ' + grid['cl-xs']}>
                         <Button onClick={this.openAction}
                                 title="open"
                                 linkStyle={styles.tile__link}
                                 buttonStyle={styles.tile__button} />
                         <Button onClick={this.faveAction}
-                                title="favorite"
+                                title={this.state.isFave ? "remove favorite" : "favorite"}
                                 linkStyle={styles.tile__link}
                                 buttonStyle={styles.tile__button} />
                     </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Search from '../Search/Search'
 import Tile from '../Tile/Tile'
 import * as styles from './styles.css'
 import * as grid from  '../grid.css'
@@ -61,13 +62,13 @@ export default class Catalog extends React.Component {
             <div className={grid['cl-xl-offset-2'] + ' '  +  grid['cl-lg-offset-1'] + " " + grid['cl-xl-6'] + ' ' + grid['cl-lg-8'] + ' ' + grid['cl-sm-10']}>
 
                 <div className={grid.container}>
-                    <section>
-                        This is placeholder for search box
+                    <section className={styles.catalog__search + ' ' + grid.container}>
+                        <Search />
                     </section>
                 </div>
 
                 <div className={grid.container}>
-                    <section className={styles.catalog_inner  + ' ' + grid.container + ' ' + grid['container-masonry-sm']}>
+                    <section className={styles.catalog__inner  + ' ' + grid.container + ' ' + grid['container-masonry-sm']}>
                         {tiles}
                     </section>
                 </div>

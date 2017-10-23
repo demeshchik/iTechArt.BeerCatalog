@@ -1,0 +1,17 @@
+.search {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.search__field {
+    border: none;
+    font-size: 19px;
+    border-bottom: 1px solid #EDEDED;
+}
+
+.search__icon {
+    color: #828282;
+    margin-left: 5px;
+    font-size: 24px;
+}
