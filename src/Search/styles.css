@@ -1,7 +1,5 @@
 .search {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
+    text-align: center;
 }
 
 .search__field {
@@ -14,4 +12,14 @@
     color: #828282;
     margin-left: 5px;
     font-size: 24px;
+}
+
+.search__basic {
+    display: flex;
+    justify-content: center;
+}
+
+.search__slider {
+    display: flex;
+    justify-content: space-around;
 }

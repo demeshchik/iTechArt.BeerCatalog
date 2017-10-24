@@ -6,7 +6,6 @@ export default class Button extends React.Component {
             <span className={this.props.buttonStyle}>
                 <a onClick={this.props.onClick} className={this.props.linkStyle}>{this.props.title}</a>
             </span>
-
         )
     }
 }
