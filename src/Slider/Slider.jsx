@@ -14,7 +14,7 @@ export default class Slider extends React.Component {
     handleChange(event) {
         this.setState({
             value: event.target.value
-        }, this.props.onChange(event.target.value));
+        }, this.props.onChange({id:event.target.id, value: event.target.value}));
     }
 
     render() {
@@ -24,6 +24,7 @@ export default class Slider extends React.Component {
                 <div>
                     <span>{this.state.value}</span>
                     <input type="range"
+                           id={this.props.id}
                            min={this.props.min}
                            max={this.props.max}
                            onChange={this.handleChange}

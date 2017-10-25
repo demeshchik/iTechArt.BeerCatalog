@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-modal": "^2.3.2",

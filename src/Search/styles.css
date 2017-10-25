@@ -2,6 +2,14 @@
     text-align: center;
 }
 
+.search__advanced {
+    display: block;
+}
+
+.disabled {
+    display: none;
+}
+
 .search__field {
     border: none;
     font-size: 19px;
