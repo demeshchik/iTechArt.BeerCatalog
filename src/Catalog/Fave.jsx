@@ -1,10 +1,12 @@
 import React from 'react'
 
+//TODO: Fix logic for downloading faves from server
+
 export default class Fave extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ids: "",
+            ids: JSON.parse(localStorage.getItem('faves')),
             page: 1,
             totalCount: 9,
             results: []
@@ -14,9 +16,9 @@ export default class Fave extends React.Component {
         this.newResults = this.newResults.bind(this);
     }
 
-    getBeers(page, callback) {
+    getBeers(query, page, callback) {
         let xhr = new XMLHttpRequest();
-        let path = this.state.basePath + '?per_page=9&page=' + page;
+        let path = this.state.basePath + '?per_page=9&page=' + page + query;
 
         xhr.open('get', path, true);
         xhr.send();
@@ -33,25 +35,31 @@ export default class Fave extends React.Component {
     }
 
     newResults(newPage) {
-        this.getBeers(newPage, (results) => {
+        this.getBeers('&ids=' + this.IDs(newPage), newPage, (results) => {
             this.setState({
                 results: results,
                 page: newPage,
                 totalCount: results.length
             })
-        });
+        })
     }
 
     componentDidMount() {
-        this.setState({
-           ids: localStorage.getItem('faves')
-        });
-
-        this.getBeers(this.state.page, (results ) => {
+        this.getBeers('&ids=' + this.IDs(this.state.page), this.state.page, (results) => {
             this.setState({
                 results: results,
+                totalCount: results.length
             })
+        })
+    }
+
+    IDs(page) {
+        let str = "";
+        let accArray = this.state.ids.slice(page * 9, 9);
+        accArray.forEach((item) => {
+            str += item + '|';
         });
+        return str.substring(0, str.length - 1);
     }
 
     get Pagination() {
