@@ -1,8 +1,8 @@
 import React from 'react'
-import Pagination from '../Pagination/TempPagination'
-import Tile from '../Tile/Tile'
+import Pagination from '../../components/Pagination/TempPagination'
+import Tile from '../../components/Tile/Tile'
 import * as styles from './styles.css'
-import * as grid from  '../grid.css'
+import * as grid from  '../../grid.css'
 
 //TODO: Fix logic for downloading faves from server
 

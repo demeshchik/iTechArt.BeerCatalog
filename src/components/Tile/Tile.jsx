@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../Button/Button'
-import * as grid from '../grid.css'
+import * as grid from '../../grid.css'
 import * as styles from './styles.css'
 
 //TODO: re-edit this component => stateless component && deal with newProps{isFave}

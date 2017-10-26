@@ -1,9 +1,9 @@
 import React from 'react'
-import Pagination from '../Pagination/TempPagination'
-import Search from '../Search/Search'
-import Tile from '../Tile/Tile'
+import Pagination from '../../components/Pagination/TempPagination'
+import Search from '../../components/Search/Search'
+import Tile from '../../components/Tile/Tile'
 import * as styles from './styles.css'
-import * as grid from  '../grid.css'
+import * as grid from  '../../grid.css'
 
 //TODO: re-implement Catalog component
 //TODO: merge Catalog & Fave into the one component; Fix pagination logic; Create preloader for downloading beers

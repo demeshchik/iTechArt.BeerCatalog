@@ -1,10 +1,10 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Header from './Header/Header'
-import Catalog from './Catalog/Catalog'
-import Fave from './Catalog/Fave'
+import Header from '../Header/Header'
+import Catalog from '../../containers/Catalog/Catalog'
+import Fave from '../../containers/Catalog/Fave'
 
-import * as grid from './grid.css'
+import * as grid from '../../grid.css'
 import * as styles from './styles.css'
 
 const App = () => {

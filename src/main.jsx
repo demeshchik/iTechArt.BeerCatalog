@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter} from 'react-router-dom'
-import App from './App'
+import App from './components/App/App'
 
-//TODO: Fix project structure & resolve using smart/dumb components & create Utils class
+//TODO: Create Utils class
 
 ReactDOM.render(
     <BrowserRouter>

@@ -1,11 +1,11 @@
 import React from 'react'
 import Slider from '../Slider/Slider'
-import * as grid from '../grid.css'
+import * as grid from '../../grid.css'
 import * as styles from './styles.css'
 
 //TODO: Change visual style of sliders
 
-export default class Search extends React.Component {
+export default class Search extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
