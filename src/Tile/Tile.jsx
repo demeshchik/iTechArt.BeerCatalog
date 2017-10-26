@@ -3,13 +3,23 @@ import Button from '../Button/Button'
 import * as grid from '../grid.css'
 import * as styles from './styles.css'
 
-export default class Tile extends React.Component {
+//TODO: re-edit this component => stateless component && deal with newProps{isFave}
+
+export default class Tile extends React.PureComponent {
     constructor(props) {
         super(props);
         this.openAction = this.openAction.bind(this);
         this.faveAction = this.faveAction.bind(this);
         this.state = {
-            isFave: false
+            isFave: props.isFave
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.isFave !== this.props.isFave) {
+            this.setState({
+                isFave: !this.state.isFave
+            })
         }
     }
 
@@ -18,14 +28,10 @@ export default class Tile extends React.Component {
     }
 
     faveAction() {
-        let faves = typeof localStorage.getItem('faves') !== 'string' ? [] : JSON.parse(localStorage.getItem('faves'));
-
-        this.state.isFave ? faves.splice(faves.indexOf(this.props.tile.id), 1) : faves.push(this.props.tile.id);
-
         this.setState({
             isFave: !this.state.isFave
         }, () => {
-            localStorage.setItem('faves', JSON.stringify(faves));
+            this.props.faveHandler({id: this.props.tile.id, value: this.state.isFave});
         });
     }
 
@@ -38,7 +44,7 @@ export default class Tile extends React.Component {
                 <div className={styles.tile__content}>
                     <h3 className={styles.tile__title}>{this.props.tile.name}</h3>
                     <span className={styles.tile__tagline}>{this.props.tile.tagline}</span>
-                    <div className={styles.tile__buttons + ' ' + grid['cl-xl-6'] + ' ' + grid['cl-lg-8'] + ' ' + grid['cl-xs']}>
+                    <div className={styles.tile__buttons + ' ' + grid['cl-xl-6'] + ' ' + grid['cl-lg-10'] + ' ' + grid['cl-xs']}>
                         <Button onClick={this.openAction}
                                 title="open"
                                 linkStyle={styles.tile__link}

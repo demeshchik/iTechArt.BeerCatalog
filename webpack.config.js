@@ -24,7 +24,11 @@ module.exports = {
                 test: /\.css$/,
                 loader: combineLoaders([
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader',
+                        options: {
+                            singleton: true,
+                            sourceMap: true
+                        }
                     }, {
                         loader: 'css-loader',
                         query: {

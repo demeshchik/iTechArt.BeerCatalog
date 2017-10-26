@@ -40,7 +40,7 @@ export default class Search extends React.Component {
         paramsArray.forEach(function (item) {
             if (item.search(idReg) !== -1) {
                 checker = true;
-                item = item.replace(/\d/, newValue);
+                item = item.replace(/\d+/, newValue);
             }
             item = item.padStart(item.length + 1, "&");
             paramsString += item;

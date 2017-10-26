@@ -3,7 +3,9 @@ import Menu from '../Menu/Menu'
 import * as styles from './styles.css'
 import * as grid from '../grid.css'
 
-export default class Header extends React.Component {
+//TODO: Trying to change to stateless component
+
+export default class Header extends React.PureComponent {
     constructor(props) {
         super(props);
 

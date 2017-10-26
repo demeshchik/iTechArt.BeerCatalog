@@ -4,7 +4,7 @@ import * as styles from './styles.css'
 
 //TODO: Fix Link to home page when app will be hosted on the server
 
-export default class Menu extends React.Component {
+export default class Menu extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {

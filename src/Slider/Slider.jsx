@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Slider extends React.Component {
+export default class Slider extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -27,7 +27,7 @@ export default class Slider extends React.Component {
                            id={this.props.id}
                            min={this.props.min}
                            max={this.props.max}
-                           onChange={this.handleChange}
+                           onMouseUp={this.handleChange}
                            step={this.props.step ? this.props.step : 1} />
                 </div>
             </div>

@@ -5,6 +5,7 @@ import Tile from '../Tile/Tile'
 import * as styles from './styles.css'
 import * as grid from  '../grid.css'
 
+//TODO: re-implement Catalog component
 //TODO: merge Catalog & Fave into the one component; Fix pagination logic; Create preloader for downloading beers
 
 export default class Catalog extends React.Component {
@@ -52,6 +53,14 @@ export default class Catalog extends React.Component {
         })
     }
 
+    onFaveHandler(event) {
+        let faves = typeof localStorage.getItem('faves') !== 'string' ? [] : JSON.parse(localStorage.getItem('faves'));
+
+        event.value ?  faves.push(event.id) : faves.splice(faves.indexOf(event.id), 1);
+
+        localStorage.setItem('faves', JSON.stringify(faves));
+    }
+
     newResults(newPage) {
         this.getBeers(this.state.queryPath, newPage, (results) => {
             this.setState({
@@ -70,6 +79,12 @@ export default class Catalog extends React.Component {
         });
     }
 
+    checkItemInStorage(storageName, item) {
+        let storageArray = typeof localStorage.getItem(storageName) === 'string' ? JSON.parse(localStorage.getItem(storageName)) : [];
+
+        return storageArray.indexOf(item) !== -1;
+    }
+
     get Pagination() {
         return {
             current_page: this.state.page,
@@ -82,7 +97,11 @@ export default class Catalog extends React.Component {
         let tiles = [];
 
         this.state.results.forEach((item, index) => {
-            tiles.push(<Tile key={index} tile={item} />)
+            let isFave = this.checkItemInStorage('faves', item.id);
+            tiles.push(<Tile key={index}
+                             faveHandler={this.onFaveHandler}
+                             isFave={isFave}
+                             tile={item} />)
         });
 
         return tiles;
