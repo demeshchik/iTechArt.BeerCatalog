@@ -1,12 +1,13 @@
 import React from 'react'
-import Pagination from '../../components/Pagination/TempPagination'
+import InfiniteScroll from 'react-infinite-scroller'
 import Search from '../../components/Search/Search'
 import Tile from '../../components/Tile/Tile'
+
 import * as styles from './styles.css'
 import * as grid from  '../../grid.css'
 
 //TODO: re-implement Catalog component
-//TODO: merge Catalog & Fave into the one component; Fix pagination logic; Create preloader for downloading beers
+//TODO: merge Catalog & Fave into the one component
 
 export default class Catalog extends React.Component {
     constructor(props) {
@@ -15,12 +16,11 @@ export default class Catalog extends React.Component {
             basePath: 'https://api.punkapi.com/v2/beers/',
             queryPath: '',
             page: 1,
-            totalCount: 9,
+            hasMore: true,
             results: []
         };
 
         this.onSearchPerform = this.onSearchPerform.bind(this);
-        this.getBeers = this.getBeers.bind(this);
         this.newResults = this.newResults.bind(this);
     }
 
@@ -46,7 +46,6 @@ export default class Catalog extends React.Component {
         this.getBeers(query, 1, (results) => {
             this.setState({
                 page: 1,
-                totalCount: results.length,
                 results: results,
                 queryPath: query,
             })
@@ -61,20 +60,12 @@ export default class Catalog extends React.Component {
         localStorage.setItem('faves', JSON.stringify(faves));
     }
 
-    newResults(newPage) {
-        this.getBeers(this.state.queryPath, newPage, (results) => {
-            this.setState({
-                results: results,
-                page: newPage,
-                totalCount: results.length
-            })
-        });
-    }
-
-    componentDidMount() {
+    newResults() {
         this.getBeers(this.state.queryPath, this.state.page, (results) => {
             this.setState({
-                results: results,
+                results: [...this.state.results, ...results],
+                hasMore: results.length >= 9,
+                page: this.state.page + 1
             })
         });
     }
@@ -83,14 +74,6 @@ export default class Catalog extends React.Component {
         let storageArray = typeof localStorage.getItem(storageName) === 'string' ? JSON.parse(localStorage.getItem(storageName)) : [];
 
         return storageArray.indexOf(item) !== -1;
-    }
-
-    get Pagination() {
-        return {
-            current_page: this.state.page,
-            total_count: this.state.totalCount,
-            max_per_page: 9,
-        };
     }
 
     get Tiles() {
@@ -117,15 +100,15 @@ export default class Catalog extends React.Component {
                 </div>
 
                 <div className={grid.container}>
-                    <section className={styles.catalog__inner  + ' ' + grid.container + ' ' + grid['container-masonry-sm']}>
-                        {this.Tiles}
-                    </section>
-                </div>
-
-                <div className={grid.container}>
-                    <section className={styles.catalog__pagination + ' ' + grid.container}>
-                        <Pagination pagination={this.Pagination}
-                                    onPageRequest={this.newResults} />
+                    <section className={styles.catalog__inner  + ' ' + grid.container}>
+                        <InfiniteScroll
+                            pageStart={0}
+                            loadMore={this.newResults}
+                            hasMore={this.state.hasMore}
+                            loader={<div>Loading ...</div>}
+                        >
+                            {this.Tiles}
+                        </InfiniteScroll>
                     </section>
                 </div>
             </div>

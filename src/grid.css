@@ -48,6 +48,10 @@
         margin-left: 0;
     }
 
+    .cl-sm-5 {
+        width: 50%;
+    }
+
     .cl-sm-10 {
         width: 100%;
     }

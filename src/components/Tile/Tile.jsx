@@ -37,7 +37,7 @@ export default class Tile extends React.PureComponent {
 
     render() {
         return (
-            <div className={styles.tile + ' ' + grid['cl-xl-3'] + ' ' + grid['cl-masonry-sm'] + ' ' + grid['cl-xs']}>
+            <div className={styles.tile + ' ' + grid['cl-xl-3'] + ' ' + grid['cl-sm-5'] + ' ' + grid['cl-xs']}>
                 <div className={styles.tile__header}>
                     <img src={this.props.tile.image_url} className={grid['img-responsive']} />
                 </div>
