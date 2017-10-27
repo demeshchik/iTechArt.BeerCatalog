@@ -7,6 +7,7 @@ import * as styles from './styles.css'
 import * as grid from  '../../grid.css'
 
 //TODO: re-implement Catalog component
+//TODO: fix newResults method (newPage param)
 //TODO: merge Catalog & Fave into the one component
 
 export default class Catalog extends React.Component {
@@ -15,12 +16,11 @@ export default class Catalog extends React.Component {
         this.state = {
             basePath: 'https://api.punkapi.com/v2/beers/',
             queryPath: '',
-            page: 1,
+            page: 0,
             hasMore: true,
             results: []
         };
 
-        this.onSearchPerform = this.onSearchPerform.bind(this);
         this.newResults = this.newResults.bind(this);
     }
 
@@ -42,14 +42,18 @@ export default class Catalog extends React.Component {
         }
     }
 
-    onSearchPerform(query) {
-        this.getBeers(query, 1, (results) => {
+    newResults(query) {
+        let _query = query || this.state.queryPath;
+        let _page = query ? 1 : this.state.page;
+
+        this.getBeers(_query, _page, (data) => {
             this.setState({
-                page: 1,
-                results: results,
-                queryPath: query,
+                page: query ? _page : _page + 1,
+                results: [...this.state.results, ...data],
+                hasMore: data.length >= 9,
+                queryPath: _query
             })
-        })
+        });
     }
 
     onFaveHandler(event) {
@@ -58,16 +62,6 @@ export default class Catalog extends React.Component {
         event.value ?  faves.push(event.id) : faves.splice(faves.indexOf(event.id), 1);
 
         localStorage.setItem('faves', JSON.stringify(faves));
-    }
-
-    newResults() {
-        this.getBeers(this.state.queryPath, this.state.page, (results) => {
-            this.setState({
-                results: [...this.state.results, ...results],
-                hasMore: results.length >= 9,
-                page: this.state.page + 1
-            })
-        });
     }
 
     checkItemInStorage(storageName, item) {
@@ -95,7 +89,7 @@ export default class Catalog extends React.Component {
             <div className={grid['cl-xl-offset-2'] + ' '  +  grid['cl-lg-offset-1'] + " " + grid['cl-xl-6'] + ' ' + grid['cl-lg-8'] + ' ' + grid['cl-sm-10']}>
                 <div className={grid.container}>
                     <section className={styles.catalog__search + ' ' + grid.container}>
-                        <Search onSearch={this.onSearchPerform} />
+                        <Search onSearch={this.newResults} />
                     </section>
                 </div>
 
