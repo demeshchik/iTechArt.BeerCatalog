@@ -53,3 +53,4 @@ fabric.properties
 /.idea/
 /node_modules/
 /scripts/app.bundle.js
+/scripts/
