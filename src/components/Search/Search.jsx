@@ -1,5 +1,7 @@
 import React from 'react'
+import Utils from '../../utils/Utils'
 import Slider from '../Slider/Slider'
+
 import * as grid from '../../grid.css'
 import * as styles from './styles.css'
 
@@ -14,8 +16,6 @@ export default class Search extends React.PureComponent {
             isAdvanced: false
         };
 
-        this.onSearch = this.onSearch.bind(this);
-        this.changeValueInQuery = this.changeValueInQuery.bind(this);
         this.onSliderChange = this.onSliderChange.bind(this);
     }
 
@@ -31,27 +31,9 @@ export default class Search extends React.PureComponent {
         }
     }
 
-    changeValueInQuery(id, newValue) {
-        let checker = false;
-        let idReg = new RegExp(id, 'i');
-        let paramsArray = this.state.slidersQuery.split('&');
-        let paramsString = "";
-
-        paramsArray.forEach(function (item) {
-            if (item.search(idReg) !== -1) {
-                checker = true;
-                item = item.replace(/\d+/, newValue);
-            }
-            item = item.padStart(item.length + 1, "&");
-            paramsString += item;
-        });
-
-        let finalString = checker ? paramsString : paramsString + `&${id}_gt=${newValue}`;
-        return finalString.substring(1);
-    }
-
     onSliderChange(sliderEvent) {
-        let newSlidersQuery = this.changeValueInQuery(sliderEvent.id, sliderEvent.value);
+        let newSlidersQuery = Utils.changeValueInQuery(this.state.slidersQuery, sliderEvent.id, sliderEvent.value);
+
         this.setState({
             slidersQuery: newSlidersQuery
         }, () => {

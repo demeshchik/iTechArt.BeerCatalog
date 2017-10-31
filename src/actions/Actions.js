@@ -2,7 +2,7 @@ import * as Constants from '../constants/Constants'
 
 export function getBeers(query, page) {
     return function (dispatch) {
-        if (query !== '' && page === 1) {
+        if (page === 1) {
             dispatch({
                 type: Constants.CLEAR_STORE,
                 data: null

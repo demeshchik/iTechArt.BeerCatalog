@@ -3,7 +3,6 @@ import React from 'react'
 export default class Slider extends React.PureComponent {
     constructor(props) {
         super(props);
-
         this.state = {
             value: ""
         };

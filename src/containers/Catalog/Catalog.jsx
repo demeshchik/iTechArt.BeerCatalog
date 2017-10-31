@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import InfiniteScroll from 'react-infinite-scroller'
+import Utils from '../../utils/Utils'
 
 import Search from '../../components/Search/Search'
 import Tile from '../../components/Tile/Tile'
@@ -24,7 +25,7 @@ class Catalog extends React.Component {
         this.newResults = this.newResults.bind(this);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps) {
         return this.props !== nextProps;
     }
 
@@ -48,18 +49,12 @@ class Catalog extends React.Component {
         localStorage.setItem('faves', JSON.stringify(faves));
     }
 
-    checkItemInStorage(storageName, item) {
-        let storageArray = typeof localStorage.getItem(storageName) === 'string' ? JSON.parse(localStorage.getItem(storageName)) : [];
-
-        return storageArray.indexOf(item) !== -1;
-    }
-
     get Tiles() {
         let tiles = [];
 
         if (this.props.thumbnails && this.props.thumbnails.length > 0) {
             this.props.thumbnails.forEach((item, index) => {
-                let isFave = this.checkItemInStorage('faves', item.id);
+                let isFave = Utils.checkItemInStorage('faves', item.id);
                 tiles.push(<Tile key={index}
                                  faveHandler={this.onFaveHandler}
                                  isFave={isFave}
