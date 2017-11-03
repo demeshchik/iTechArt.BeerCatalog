@@ -58,10 +58,6 @@ class Catalog extends React.Component {
 
     }
 
-    onFaveHandler(event) {
-        this.props.actions.manageFave(event.value, event.id);
-    }
-
     get Tiles() {
         let thumbnails = this.state.isFave ? this.props.faves : this.props.thumbnails;
         let tiles = [];
@@ -70,7 +66,7 @@ class Catalog extends React.Component {
             thumbnails.forEach((item, index) => {
                 let isFave = Utils.checkItemInStorage('faves', item.id);
                 tiles.push(<Tile key={index}
-                                 faveHandler={this.onFaveHandler}
+                                 faveHandler={(event) => this.props.actions.manageFave(event.value, event.id)}
                                  isFave={isFave}
                                  tile={item} />)
             });

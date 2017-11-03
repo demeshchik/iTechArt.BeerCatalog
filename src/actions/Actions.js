@@ -11,15 +11,22 @@ function getBeers(dispatch, successAction, query, page) {
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
+            let response = JSON.parse(xhr.responseText);
+
             if (xhr.status === 200) {
                 dispatch({
                     type: successAction,
-                    data: JSON.parse(xhr.responseText)
+                    data: {
+                        beers: response,
+                        hasMore: response.length === 12
+                    }
+
                 })
-            } else {
+            }
+            else {
                 dispatch({
-                    type: Constants.GET_BEERS_FAILED,
-                    data: JSON.parse(xhr.responseText)
+                    type: Constants.LOAD_BEERS_FAILED,
+                    data: response
                 })
             }
         }
@@ -44,7 +51,7 @@ export function loadBeers(query, page) {
             })
         }
 
-        getBeers(dispatch, Constants.GET_BEERS_SUCCESS, query, page);
+        getBeers(dispatch, Constants.LOAD_BEERS_SUCCESS, query, page);
     }
 }
 
@@ -66,7 +73,7 @@ export function manageFave(flag, item) {
 
         dispatch({
             type: Constants.MANAGE_FAVE,
-            data: faves
-        })
+            data: {flag, item}
+        });
     }
 }
