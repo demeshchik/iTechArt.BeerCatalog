@@ -26,8 +26,8 @@ export default class Utils {
 
     static IDs(idsArray, page) {
         let str = "";
-        let startIndex = (page - 1) * 9;
-        let accArray = idsArray.slice(startIndex, startIndex + 9);
+        let startIndex = (page - 1) * 12;
+        let accArray = idsArray.slice(startIndex, startIndex + 12);
         accArray.forEach((item) => {
             str += item + '|';
         });

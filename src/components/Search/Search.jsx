@@ -26,7 +26,7 @@ export default class Search extends React.PureComponent {
                 query: query,
                 isAdvanced: true
             }, () => {
-                this.props.onSearch(null, this.state.query)
+                this.props.onSearch(this.state.query)
             });
         }
     }
@@ -37,7 +37,7 @@ export default class Search extends React.PureComponent {
         this.setState({
             slidersQuery: newSlidersQuery
         }, () => {
-            this.props.onSearch(null, this.state.query + this.state.slidersQuery);
+            this.props.onSearch(this.state.query + this.state.slidersQuery);
         })
     }
 

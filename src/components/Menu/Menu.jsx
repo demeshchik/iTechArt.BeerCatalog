@@ -33,8 +33,8 @@ export default class Menu extends React.PureComponent {
         return (
             <div className={(this.state.visible ? styles.visible : "") + " " + styles.sidenav}>
                 <ul className={styles.navbar}>
-                    <li className={styles.navbar__item}><Link to='/index.html'>Home</Link></li>
-                    <li className={styles.navbar__item}><Link to='/fave'>Favorites</Link></li>
+                    <li className={styles.navbar__item}><Link to='/BeerCatalog/index.html'>Home</Link></li>
+                    <li className={styles.navbar__item}><Link to='/BeerCatalog/fave'>Favorites</Link></li>
                 </ul>
             </div>
         )
