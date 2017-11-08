@@ -16,7 +16,7 @@ export default class Tile extends React.PureComponent {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.isFave !== this.props.isFave) {
+        if (newProps.isFave !== this.state.isFave) {
             this.setState({
                 isFave: !this.state.isFave
             })

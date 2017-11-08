@@ -7,7 +7,8 @@ import Utils from '../../utils/Utils'
 import Search from '../../components/Search/Search'
 import Tile from '../../components/Tile/Tile'
 
-import * as Actions from '../../actions/Actions'
+import * as beerActions from '../../actions/beerActions'
+import * as faveActions from '../../actions/faveActions'
 
 import * as styles from './styles.css'
 import * as grid from  '../../grid.css'
@@ -25,6 +26,7 @@ class Catalog extends React.Component {
 
         this.searchHandler = this.searchHandler.bind(this);
         this.newResults = this.newResults.bind(this);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -33,16 +35,16 @@ class Catalog extends React.Component {
                 isFave: !this.state.isFave,
                 page: 1
             }, () => {
-                let actions = this.props.actions;
-                this.state.isFave ? actions.loadFaves(this.state.page) : actions.loadBeers(this.state.queryPath, this.state.page);
+                let props = this.props;
+                this.state.isFave ? props.faveActions.loadFaves(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
             });
 
         }
     }
 
-    shouldComponentUpdate(nextProps) {
-        return this.props !== nextProps;
-    }
+    //shouldComponentUpdate(nextProps) {
+    //    return this.props !== nextProps;
+    //}
 
     searchHandler(query) {
 
@@ -52,8 +54,8 @@ class Catalog extends React.Component {
         this.setState({
             page: this.state.page + 1,
         }, () => {
-            let actions = this.props.actions;
-            this.state.isFave ? actions.loadFaves(this.state.page) : actions.loadBeers(this.state.queryPath, this.state.page);
+            let props = this.props;
+            this.state.isFave ? props.faveActions.loadFaves(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
         });
 
     }
@@ -66,7 +68,7 @@ class Catalog extends React.Component {
             thumbnails.forEach((item, index) => {
                 let isFave = Utils.checkItemInStorage('faves', item.id);
                 tiles.push(<Tile key={index}
-                                 faveHandler={(event) => this.props.actions.manageFave(event.value, event.id)}
+                                 faveHandler={(event) => this.props.faveActions.manageFave(event.value, event.id)}
                                  isFave={isFave}
                                  tile={item} />)
             });
@@ -116,7 +118,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        beerActions: bindActionCreators(beerActions, dispatch),
+        faveActions: bindActionCreators(faveActions, dispatch)
     }
 }
 
