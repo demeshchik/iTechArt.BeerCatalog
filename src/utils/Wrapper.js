@@ -43,15 +43,15 @@ export default class Wrapper {
         }
     }
 
-    static getFaves() {
-        return typeof localStorage.getItem('faves') !== 'string' ? [] : JSON.parse(localStorage.getItem('faves'));
+    static getFavorites() {
+        return typeof localStorage.getItem('favorites') !== 'string' ? [] : JSON.parse(localStorage.getItem('favorites'));
     }
 
-    static faveManager(flag, item) {
-        let faves = Wrapper.getFaves();
+    static favoriteManager(flag, item) {
+        let faves = Wrapper.getFavorites();
 
         flag ? faves.push(item) : faves.splice(faves.indexOf(item), 1);
 
-        localStorage.setItem('faves', JSON.stringify(faves));
+        localStorage.setItem('favorites', JSON.stringify(faves));
     }
 }

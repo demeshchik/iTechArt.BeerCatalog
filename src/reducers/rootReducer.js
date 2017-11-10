@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import beersReducer from './beerReducer'
-import faveReducer from './faveReducer'
+import favoritesReducer from './favoriteReducer'
 
 export default combineReducers({
     beers: beersReducer,
-    faves: faveReducer
+    favorites: favoritesReducer
 })

@@ -7,8 +7,8 @@ import Utils from '../../utils/Utils'
 import Search from '../../components/Search/Search'
 import Tile from '../../components/Tile/Tile'
 
-import * as beerActions from '../../actions/beerActions'
-import * as faveActions from '../../actions/faveActions'
+import * as beersActions from '../../actions/beerActions'
+import * as favoritesActions from '../../actions/favoritesActions'
 
 import * as styles from './catalog.css'
 import * as grid from  '../../grid.css'
@@ -30,13 +30,13 @@ class Catalog extends React.Component {
 
     loadData() {
         let props = this.props;
-        this.state.isFave ? props.faveActions.loadFaves(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
+        this.state.isFavorite ? props.favoriteActions.loadFavorites(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.location.pathname !== nextProps.location.pathname) {
             this.setState({
-                isFave: !this.state.isFave,
+                isFave: !this.state.isFavorite,
                 page: 1
             }, () => {
                 this.loadData();
@@ -66,15 +66,15 @@ class Catalog extends React.Component {
     }
 
     get Tiles() {
-        let thumbnails = this.state.isFave ? this.props.faves.data : this.props.beers.data;
+        let thumbnails = this.state.isFavorite ? this.props.favorites.data : this.props.beers.data;
         let tiles = [];
 
         if (thumbnails && thumbnails.length > 0) {
             thumbnails.forEach((item, index) => {
-                let isFave = Utils.checkItemInStorage('faves', item.id);
+                let isFavorite = Utils.checkItemInStorage('favorites', item.id);
                 tiles.push(<Tile key={index}
-                                 faveHandler={(event) => this.props.faveActions.manageFave(event.value, event.id)}
-                                 isFave={isFave}
+                                 favoriteHandler={(event) => this.props.favoriteActions.manageFavorites(event.value, event.id)}
+                                 isFavorite={isFavorite}
                                  tile={item} />)
             });
         }
@@ -83,7 +83,7 @@ class Catalog extends React.Component {
     }
 
     get HasMore() {
-        return this.state.isFave ? this.props.faves.hasMore : this.props.beers.hasMore;
+        return this.state.isFavorite ? this.props.favorites.hasMore : this.props.beers.hasMore;
     }
 
     render() {
@@ -92,7 +92,7 @@ class Catalog extends React.Component {
                 <span>{this.props.error}</span> :
                 <div className={grid['cl-xl-offset-2'] + ' '  +  grid['cl-lg-offset-1'] + " " + grid['cl-xl-6'] + ' ' + grid['cl-lg-8'] + ' ' + grid['cl-sm-10']}>
                     <div className={grid.container}>
-                        {this.state.isFave ?
+                        {this.state.isFavorite ?
                             '' :
                             <section className={styles.catalog__search + ' ' + grid.container}>
                                 <Search onSearch={this.searchHandler} />
@@ -118,7 +118,7 @@ class Catalog extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        faves: state.faves,
+        favorites: state.favorites,
         beers: state.beers,
         error: state.error
     }
@@ -126,8 +126,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        beerActions: bindActionCreators(beerActions, dispatch),
-        faveActions: bindActionCreators(faveActions, dispatch)
+        beerActions: bindActionCreators(beersActions, dispatch),
+        favoriteActions: bindActionCreators(favoritesActions, dispatch)
     }
 }
 

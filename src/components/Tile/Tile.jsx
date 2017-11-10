@@ -4,22 +4,22 @@ import Button from '../Button/Button'
 import * as grid from '../../grid.css'
 import * as styles from './tile.css'
 
-//TODO: re-edit this component => stateless component && deal with newProps{isFave}
+//TODO: re-edit this component => stateless component && deal with newProps{isFavorite}
 
 export default class Tile extends React.PureComponent {
     constructor(props) {
         super(props);
         this.openAction = this.openAction.bind(this);
-        this.faveAction = this.faveAction.bind(this);
+        this.favoriteAction = this.favoriteAction.bind(this);
         this.state = {
-            isFave: props.isFave
+            isFavorite: props.isFavorite
         }
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.isFave !== this.state.isFave) {
+        if (newProps.isFavorite !== this.state.isFavorite) {
             this.setState({
-                isFave: !this.state.isFave
+                isFavorite: !this.state.isFavorite
             })
         }
     }
@@ -28,11 +28,11 @@ export default class Tile extends React.PureComponent {
         alert("Open button pressed");
     }
 
-    faveAction() {
+    favoriteAction() {
         this.setState({
-            isFave: !this.state.isFave
+            isFavorite: !this.state.isFavorite
         }, () => {
-            this.props.faveHandler({id: this.props.tile.id, value: this.state.isFave});
+            this.props.favoriteHandler({id: this.props.tile.id, value: this.state.isFavorite});
         });
     }
 
@@ -50,8 +50,8 @@ export default class Tile extends React.PureComponent {
                                 title="open"
                                 linkStyle={styles.tile__link}
                                 buttonStyle={styles.tile__button} />
-                        <Button onClick={this.faveAction}
-                                title={this.state.isFave ? "remove favorite" : "favorite"}
+                        <Button onClick={this.favoriteAction}
+                                title={this.state.isFavorite ? "remove favorite" : "favorite"}
                                 linkStyle={styles.tile__link}
                                 buttonStyle={styles.tile__button} />
                     </div>

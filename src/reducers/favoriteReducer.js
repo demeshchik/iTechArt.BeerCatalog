@@ -11,7 +11,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case Constants.LOAD_FAVES_SUCCESS:
+        case Constants.LOAD_FAVORITES_SUCCESS:
             let storeArray = [...state.data];
 
             storeArray.push(...action.data.beers);
@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action) {
 
             return {...state, data: finalArray, hasMore: action.data.hasMore};
 
-        case Constants.MANAGE_FAVE:
+        case Constants.MANAGE_FAVORITE:
             let storeFaves = [...state.data];
 
             action.data.flag ? storeFaves.push(action.data.beer) : remove(storeFaves, (item) => item.id === action.data.beer.id);
