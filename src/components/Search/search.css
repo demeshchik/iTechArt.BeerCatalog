@@ -11,6 +11,7 @@
 }
 
 .search__field {
+    outline: none;
     border: none;
     font-size: 19px;
     border-bottom: 1px solid #EDEDED;

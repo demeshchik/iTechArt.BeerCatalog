@@ -13,8 +13,6 @@ import * as faveActions from '../../actions/faveActions'
 import * as styles from './catalog.css'
 import * as grid from  '../../grid.css'
 
-//TODO: splice into separate functions
-
 class Catalog extends React.Component {
     constructor(props) {
         super(props);
@@ -52,7 +50,10 @@ class Catalog extends React.Component {
     //}
 
     searchHandler(query) {
-
+        this.setState({
+            queryPath: query,
+            page: 1
+        }, () => this.props.beerActions.loadBeers(query, 1));
     }
 
     newResults() {

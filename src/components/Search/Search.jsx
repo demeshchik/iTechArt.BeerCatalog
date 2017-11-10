@@ -16,20 +16,31 @@ export default class Search extends React.PureComponent {
             isAdvanced: false
         };
 
+        this.queryChange = this.queryChange.bind(this);
+        this.onSearch = this.onSearch.bind(this);
         this.onSliderChange = this.onSliderChange.bind(this);
     }
 
+
+    get Query() {
+        return this.state.query === '' ? '' : '&beer_name=' + this.state.query;
+    }
+
     onSearch(event) {
-        if (event.key === 'Enter') {
-            let query = event.target.value === '' ? '' : '&beer_name=' + event.target.value;
+        if (event.key === 'Enter' || event.button === 0) {
             this.setState({
-                query: query,
                 isAdvanced: true
-            }, () => {
-                this.props.onSearch(this.state.query)
             });
+            this.props.onSearch(this.Query)
         }
     }
+
+    queryChange(event) {
+        this.setState({
+            query: event.target.value
+        })
+    }
+
 
     onSliderChange(sliderEvent) {
         let newSlidersQuery = Utils.changeValueInQuery(this.state.slidersQuery, sliderEvent.id, sliderEvent.value);
@@ -37,7 +48,7 @@ export default class Search extends React.PureComponent {
         this.setState({
             slidersQuery: newSlidersQuery
         }, () => {
-            this.props.onSearch(this.state.query + this.state.slidersQuery);
+            this.props.onSearch(this.Query + this.state.slidersQuery);
         })
     }
 
@@ -45,8 +56,8 @@ export default class Search extends React.PureComponent {
         return (
             <div className={styles.search}>
                 <div className={styles.search__basic}>
-                    <input className={styles.search__field + ' ' + grid['cl-xl-3']} type="search" onKeyPress={this.onSearch} placeholder="Search beers..." />
-                    <i className={'fa fa-search ' + styles.search__icon} aria-hidden="true"></i>
+                    <input className={styles.search__field + ' ' + grid['cl-xl-3']} type="search" onChange={this.queryChange} onKeyPress={this.onSearch} placeholder="Search beers..." />
+                    <i className={'fa fa-search ' + styles.search__icon} aria-hidden="true" onClick={this.onSearch}></i>
                 </div>
 
                 <div className={this.state.isAdvanced ? styles.search__advanced : styles.disabled}>
