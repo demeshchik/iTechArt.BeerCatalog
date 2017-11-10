@@ -1,6 +1,7 @@
 import React from 'react'
 import Menu from '../Menu/Menu'
-import * as styles from './styles.css'
+
+import * as styles from './header.css'
 import * as grid from '../../grid.css'
 
 //TODO: Trying to change to stateless component

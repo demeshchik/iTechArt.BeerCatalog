@@ -3,7 +3,7 @@ import Utils from '../../utils/Utils'
 import Slider from '../Slider/Slider'
 
 import * as grid from '../../grid.css'
-import * as styles from './styles.css'
+import * as styles from './search.css'
 
 //TODO: Change visual style of sliders
 

@@ -4,7 +4,7 @@ import Header from '../Header/Header'
 import Catalog from '../../containers/Catalog/Catalog'
 
 import * as grid from '../../grid.css'
-import * as styles from './styles.css'
+import * as styles from './app.css'
 
 const App = () => {
   return <div className={styles.app}>

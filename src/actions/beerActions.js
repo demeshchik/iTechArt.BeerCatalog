@@ -1,4 +1,4 @@
-import * as Constants from '../constants/Constants'
+import * as Constants from '../constants/constants'
 
 import Wrapper from '../utils/Wrapper'
 

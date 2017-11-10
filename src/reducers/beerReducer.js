@@ -1,8 +1,9 @@
-import * as Constants from '../constants/Constants'
+import * as Constants from '../constants/constants'
 
-import initialState from '../store/initialState'
-
-//TODO: try to merge beers
+const initialState = {
+    data: [],
+    hasMore: true
+};
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -10,9 +11,9 @@ export default function reducer(state = initialState, action) {
             return initialState;
 
         case Constants.LOAD_BEERS_SUCCESS:
-            let tempArray = [...state.thumbnails];
+            let tempArray = [...state.data];
             tempArray.push(...action.data.beers);
-            return {...state, thumbnails: tempArray, hasMore: action.data.hasMore};
+            return {...state, data: tempArray, hasMore: action.data.hasMore};
 
         case Constants.LOAD_BEERS_FAILED:
             return {...state, hasMore: false, error: action.data.message};

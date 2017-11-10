@@ -1,7 +1,6 @@
 const initialState = {
-    faves: [],
-    thumbnails: [],
-    hasMore: true
+    faves: {},
+    beers: {}
 };
 
 export default initialState;

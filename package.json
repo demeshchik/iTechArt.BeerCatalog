@@ -19,14 +19,16 @@
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
+    "lodash.intersectionby": "^4.7.0",
+    "lodash.remove": "^4.7.0",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-modal": "^2.3.2",
-    "react-router": "^4.1.2",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
+    "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
+    "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "underscore": "^1.8.3"
   }

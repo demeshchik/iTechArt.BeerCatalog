@@ -1,11 +1,11 @@
-import * as Constants from '../constants/Constants'
+import * as Constants from '../constants/constants'
 
 import Utils from '../utils/Utils'
 import Wrapper from '../utils/Wrapper'
 
 export function loadFaves(page) {
     return function (dispatch) {
-        Wrapper.getBeers(`&ids=${Utils.IDs(faves, page)}`, page, (response, flag) => {
+        Wrapper.getBeers(`&ids=${Utils.IDs(Wrapper.getFaves(), page)}`, page, (response, flag) => {
             if (flag) {
                 dispatch({
                     type: Constants.LOAD_BEERS_FAILED,
@@ -28,10 +28,12 @@ export function loadFaves(page) {
 
 export function manageFave(flag, item) {
     return function (dispatch) {
-        Wrapper.faveManager(flag, item, () => {
+        Wrapper.faveManager(flag, item);
+
+        Wrapper.getBeer(item, (beer) => {
             dispatch({
                 type: Constants.MANAGE_FAVE,
-                data: {flag, item}
+                data: {flag, beer}
             });
         });
     }

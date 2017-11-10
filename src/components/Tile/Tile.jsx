@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from '../Button/Button'
+
 import * as grid from '../../grid.css'
-import * as styles from './styles.css'
+import * as styles from './tile.css'
 
 //TODO: re-edit this component => stateless component && deal with newProps{isFave}
 

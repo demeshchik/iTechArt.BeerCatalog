@@ -1,9 +1,20 @@
 export default class Utils {
+    static uniqueArray(array) {
+        let obj = {};
+
+        for (let i = 0; i < array.length; i++) {
+            let item = array[i];
+            obj[item] = true;
+        }
+
+        return Object.keys(obj);
+    };
+
     static checkItemInStorage(storageName, item) {
         let storageArray = typeof localStorage.getItem(storageName) === 'string' ? JSON.parse(localStorage.getItem(storageName)) : [];
 
         return storageArray.indexOf(item) !== -1;
-    }
+    };
 
     static changeValueInQuery(queryString, id, newValue) {
         let checker = false;
@@ -22,7 +33,7 @@ export default class Utils {
 
         let finalString = checker ? paramsString : paramsString + `&${id}_gt=${newValue}`;
         return finalString.substring(1);
-    }
+    };
 
     static IDs(idsArray, page) {
         let str = "";
@@ -32,5 +43,5 @@ export default class Utils {
             str += item + '|';
         });
         return str.substring(0, str.length - 1);
-    }
+    };
 }

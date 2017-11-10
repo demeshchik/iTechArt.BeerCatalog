@@ -10,7 +10,7 @@ import Tile from '../../components/Tile/Tile'
 import * as beerActions from '../../actions/beerActions'
 import * as faveActions from '../../actions/faveActions'
 
-import * as styles from './styles.css'
+import * as styles from './catalog.css'
 import * as grid from  '../../grid.css'
 
 //TODO: splice into separate functions
@@ -26,7 +26,13 @@ class Catalog extends React.Component {
 
         this.searchHandler = this.searchHandler.bind(this);
         this.newResults = this.newResults.bind(this);
+        this.loadData = this.loadData.bind(this);
 
+    }
+
+    loadData() {
+        let props = this.props;
+        this.state.isFave ? props.faveActions.loadFaves(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -35,8 +41,7 @@ class Catalog extends React.Component {
                 isFave: !this.state.isFave,
                 page: 1
             }, () => {
-                let props = this.props;
-                this.state.isFave ? props.faveActions.loadFaves(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
+                this.loadData();
             });
 
         }
@@ -54,14 +59,13 @@ class Catalog extends React.Component {
         this.setState({
             page: this.state.page + 1,
         }, () => {
-            let props = this.props;
-            this.state.isFave ? props.faveActions.loadFaves(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
+            this.loadData();
         });
 
     }
 
     get Tiles() {
-        let thumbnails = this.state.isFave ? this.props.faves : this.props.thumbnails;
+        let thumbnails = this.state.isFave ? this.props.faves.data : this.props.beers.data;
         let tiles = [];
 
         if (thumbnails && thumbnails.length > 0) {
@@ -75,6 +79,10 @@ class Catalog extends React.Component {
         }
 
         return tiles;
+    }
+
+    get HasMore() {
+        return this.state.isFave ? this.props.faves.hasMore : this.props.beers.hasMore;
     }
 
     render() {
@@ -96,7 +104,7 @@ class Catalog extends React.Component {
                             <InfiniteScroll
                                 initialLoading={true}
                                 loadData={this.newResults}
-                                hasMore={this.props.hasMore}
+                                hasMore={this.HasMore}
                             >
                                 {this.Tiles}
                             </InfiniteScroll>
@@ -109,10 +117,9 @@ class Catalog extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        faves: state.beers.faves,
-        thumbnails: state.beers.thumbnails,
-        hasMore: state.beers.hasMore,
-        error: state.beers.error
+        faves: state.faves,
+        beers: state.beers,
+        error: state.error
     }
 }
 

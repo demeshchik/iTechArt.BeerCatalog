@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import * as styles from './styles.css'
+
+import * as styles from './menu.css'
 
 //TODO: Fix Link to home page when app will be hosted on the server
 
