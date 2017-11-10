@@ -1,24 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-import rootReducer from './reducers/rootReducer'
+import rootReducer from './reducers/rootReducer';
 
-import App from './components/App/App'
+import App from './components/App/App';
 
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>,
-    document.getElementById('app')
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>,
+	document.getElementById('app'),
 );
