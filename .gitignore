@@ -234,3 +234,9 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/BeerCatalog.WEB/node_modules/
+/BeerCatalog.WEB/wwwroot/dist/
+/BeerCatalog.WEB/obj/
+/BeerCatalog.WEB/bin/
+/.idea/
+/.vs/
