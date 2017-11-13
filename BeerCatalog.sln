@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCatalog.WEB", "BeerCatalog.WEB\BeerCatalog.WEB.csproj", "{52ED3E4B-664F-4336-B301-E494252778FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52ED3E4B-664F-4336-B301-E494252778FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52ED3E4B-664F-4336-B301-E494252778FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52ED3E4B-664F-4336-B301-E494252778FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52ED3E4B-664F-4336-B301-E494252778FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2350EDFE-E21E-4C35-B1E2-6AEB1FEA8DFB}
+	EndGlobalSection
+EndGlobal
