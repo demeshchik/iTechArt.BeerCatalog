@@ -52,7 +52,7 @@ Slider.propTypes = {
 	containerStyle: PropTypes.string,
 	name: PropTypes.string,
 	id: PropTypes.string,
-	min: PropTypes.number,
-	max: PropTypes.number,
-	step: PropTypes.number,
+	min: PropTypes.string,
+	max: PropTypes.string,
+	step: PropTypes.string,
 };
