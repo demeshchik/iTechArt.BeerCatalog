@@ -359,3 +359,8 @@ fabric.properties
 /.vs/
 /BeerCatalog.WEB/bin/
 /BeerCatalog.WEB/obj/
+.idea/fileTemplates/
+BeerCatalog.WEB/BeerCatalog.WEB.csproj.user
+BeerCatalog.WEB/bin/
+BeerCatalog.WEB/obj/
+/BeerCatalog.WEB/wwwroot/dist/
