@@ -20,9 +20,9 @@ export default class Slider extends React.PureComponent {
 
 	render() {
 		return (
-			<div className={this.props.containerStyle}>
-				<span>{this.props.name}</span>
-				<div>
+            <div className={this.props.containerStyle}>
+                <div className={this.props.nameStyle}>{this.props.name}</div>
+                <div className={this.props.sliderStyle}>
 					<span>{this.state.value}</span>
 					<input
 						type="range"
@@ -39,7 +39,9 @@ export default class Slider extends React.PureComponent {
 }
 
 Slider.defaultProps = {
-	containerStyle: '',
+    containerStyle: '',
+    nameStyle: '',
+    sliderStyle: '',
 	name: '',
 	id: '',
 	min: 1,
@@ -49,7 +51,9 @@ Slider.defaultProps = {
 
 Slider.propTypes = {
 	onChange: PropTypes.func.isRequired,
-	containerStyle: PropTypes.string,
+    containerStyle: PropTypes.string,
+    nameStyle: PropTypes.string,
+    sliderStyle: PropTypes.string,
 	name: PropTypes.string,
 	id: PropTypes.string,
 	min: PropTypes.string,

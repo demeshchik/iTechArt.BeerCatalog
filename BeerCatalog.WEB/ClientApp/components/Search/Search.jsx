@@ -63,27 +63,33 @@ export default class Search extends React.PureComponent {
 						min="2"
 						max="14"
 						id="abv"
-						onChange={this.onSliderChange}
+                        onChange={this.onSliderChange}
+                        nameStyle={`${grid['cl-xl-5']} ${styles.search__name}`}
+                        sliderStyle={`${grid['cl-xl-5']} ${styles.search__slider}`}
 						step="1"
-						containerStyle={styles.search__slider}
+						containerStyle={grid.row}
 						name="Alcohol by volume"
 					/>
 					<Slider
 						min="0"
 						max="120"
 						id="ibu"
-						onChange={this.onSliderChange}
+                        onChange={this.onSliderChange}
+                        nameStyle={`${grid['cl-xl-5']} ${styles.search__name}`}
+                        sliderStyle={`${grid['cl-xl-5']} ${styles.search__slider}`}
 						step="1"
-						containerStyle={styles.search__slider}
+						containerStyle={grid.row}
 						name="International bitterness units "
 					/>
 					<Slider
 						min="4"
 						max="80"
 						id="cbe"
-						onChange={this.onSliderChange}
+                        onChange={this.onSliderChange}
+                        nameStyle={`${grid['cl-xl-5']} ${styles.search__name}`}
+                        sliderStyle={`${grid['cl-xl-5']} ${styles.search__slider}`}
 						step="1"
-						containerStyle={styles.search__slider}
+						containerStyle={grid.row}
 						name="Color by EBC"
 					/>
 				</div>

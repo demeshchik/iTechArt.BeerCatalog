@@ -1,4 +1,3 @@
-/* eslint-disable react/no-string-refs */
 import React from 'react';
 import Menu from '../Menu/Menu';
 
@@ -15,7 +14,7 @@ export default class Header extends React.PureComponent {
 	}
 
 	show() {
-		this.refs.menu.show();
+		this.menu.show();
 	}
 
 	render() {
@@ -27,7 +26,7 @@ export default class Header extends React.PureComponent {
 					<span className={styles.title}>Beer Catalog!</span>
 				</div>
 
-				<Menu ref="menu" />
+				<Menu ref={(refs) => { this.menu = refs; }} />
 			</header>
 		);
 	}

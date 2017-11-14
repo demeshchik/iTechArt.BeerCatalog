@@ -1,5 +1,12 @@
-.search {
-    text-align: center;
+.search__name,
+.search__slider {
+    padding-left: 10%;
+    box-sizing: border-box;
+}
+
+.search__slider {
+    overflow: hidden;
+    display: flex;
 }
 
 .search__advanced {
@@ -26,9 +33,4 @@
 .search__basic {
     display: flex;
     justify-content: center;
-}
-
-.search__slider {
-    display: flex;
-    justify-content: space-around;
 }
