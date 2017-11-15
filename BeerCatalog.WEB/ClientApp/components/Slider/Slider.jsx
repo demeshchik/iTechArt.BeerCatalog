@@ -15,7 +15,9 @@ export default class Slider extends React.PureComponent {
 	handleChange(event) {
 		this.setState({
 			value: event.target.value,
-		}, this.props.onChange({ id: event.target.id, value: event.target.value }));
+		});
+
+		this.props.onChange({ id: event.target.id, value: event.target.value });
 	}
 
 	render() {
@@ -42,8 +44,6 @@ Slider.defaultProps = {
     containerStyle: '',
     nameStyle: '',
     sliderStyle: '',
-	name: '',
-	id: '',
 	min: 1,
 	max: 10,
 	step: 1,
@@ -54,8 +54,8 @@ Slider.propTypes = {
     containerStyle: PropTypes.string,
     nameStyle: PropTypes.string,
     sliderStyle: PropTypes.string,
-	name: PropTypes.string,
-	id: PropTypes.string,
+	name: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
 	min: PropTypes.string,
 	max: PropTypes.string,
 	step: PropTypes.string,

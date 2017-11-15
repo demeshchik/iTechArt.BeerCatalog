@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import * as Constants from '../constants/constants';
+import * as Constants from '../constants/reduxConstants';
 
 const intersectionBy = require('lodash.intersectionby');
 const remove = require('lodash.remove');

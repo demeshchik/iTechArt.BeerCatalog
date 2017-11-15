@@ -1,8 +1,8 @@
 import React from 'react';
-import Menu from '../Menu/Menu';
+import Navbar from '../Navbar/Navbar';
 
-import * as styles from './header.css';
-import * as grid from '../../grid.css';
+import './Header.css';
+import '../../grid.css';
 
 //  TODO: Trying to change to stateless component
 
@@ -19,14 +19,14 @@ export default class Header extends React.PureComponent {
 
 	render() {
 		return (
-			<header className={grid.container}>
-				<div className={`${styles.navbar} ${grid.row}`}>
+			<header className="container">
+				<div className="navbar row">
 					<i className="fa fa-bars" aria-hidden="true" onClick={this.show} />
 
-					<span className={styles.title}>Beer Catalog!</span>
+					<span className="title">Beer Catalog</span>
 				</div>
 
-				<Menu ref={(refs) => { this.menu = refs; }} />
+				<Navbar ref={(refs) => { this.menu = refs; }} />
 			</header>
 		);
 	}

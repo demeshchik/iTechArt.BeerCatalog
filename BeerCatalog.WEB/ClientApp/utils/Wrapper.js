@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-expressions */
-import * as Constants from '../constants/constants';
+import * as Constants from '../constants/globalConstants';
+
+// TODO: invoke callback
 
 export default class Wrapper {
 	static getBeers(query, page, callback) {
 		const xhr = new XMLHttpRequest();
-		const path = `${Constants.BASE_PATH}?per_page=12&page=${page}${query}`;
+		const path = `${Constants.BASE_PATH}?per_page=${Constants.ITEMS_PER_PAGE}&page=${page}${query}`;
 
 		xhr.open('get', path, true);
 		xhr.send();
@@ -13,11 +15,7 @@ export default class Wrapper {
 			if (xhr.readyState === 4) {
 				const response = JSON.parse(xhr.responseText);
 
-				if (xhr.status === 200) {
-					callback(response, false);
-				} else {
-					callback(response, true);
-				}
+				callback(response, xhr.status === 200);
 			}
 		};
 	}
@@ -33,11 +31,7 @@ export default class Wrapper {
 			if (xhr.readyState === 4) {
 				const response = JSON.parse(xhr.responseText);
 
-				if (xhr.status === 200) {
-					callback(response[0], false);
-				} else {
-					callback(response, true);
-				}
+				xhr.status === 200 ? callback(response[0], false) : callback(response, true);
 			}
 		};
 	}

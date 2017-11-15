@@ -1,10 +1,14 @@
-.navbar {
-    color: #ffffff;
+.navbar
+{
     font-size: 23px;
+
     padding: 20px 20px;
-    background: #106CC8;
+
+    color: #fff;
+    background: #106cc8;
 }
 
-.title {
+.title
+{
     margin-left: 20px;
 }

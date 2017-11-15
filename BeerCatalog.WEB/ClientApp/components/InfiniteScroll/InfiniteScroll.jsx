@@ -6,27 +6,31 @@ export default class InfiniteScroll extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.handleOnScroll = this.handleOnScroll.bind(this);
+		this.onScrollHandler = this.onScrollHandler.bind(this);
 	}
 
 	componentWillMount() {
-		if (this.props.initialLoading) { this.props.loadData(); }
+		if (this.props.initialLoading) {
+			this.props.loadData();
+		}
 	}
 
 	componentDidMount() {
-		window.addEventListener('scroll', this.handleOnScroll);
+		window.addEventListener('scroll', this.onScrollHandler);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleOnScroll);
+		window.removeEventListener('scroll', this.onScrollHandler);
 	}
 
-	handleOnScroll() {
+	onScrollHandler() {
 		if (this.props.hasMore) {
 			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 				this.props.loadData();
 			}
-		} else { window.removeEventListener('scroll', this.handleOnScroll); }
+		} else {
+			window.removeEventListener('scroll', this.onScrollHandler);
+		}
 	}
 
 	render() {

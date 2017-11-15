@@ -1,11 +1,11 @@
-import * as Constants from '../constants/constants';
+import * as Constants from '../constants/globalConstants';
 
-import Utils from '../utils/Utils';
+import { idCombinator } from '../utils/utils';
 import Wrapper from '../utils/Wrapper';
 
 export function loadFavorites(page) {
 	return (dispatch) => {
-		Wrapper.getBeers(`&ids=${Utils.IDs(Wrapper.getFavorites(), page)}`, page, (response, flag) => {
+		Wrapper.getBeers(`&ids=${idCombinator(Wrapper.getFavorites(), page)}`, page, (response, flag) => {
 			if (flag) {
 				dispatch({
 					type: Constants.LOAD_BEERS_FAILED,
@@ -18,7 +18,6 @@ export function loadFavorites(page) {
 						beers: response,
 						hasMore: response.length === 12,
 					},
-
 				});
 			}
 		});

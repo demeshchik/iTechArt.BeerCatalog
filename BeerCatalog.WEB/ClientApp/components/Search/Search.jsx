@@ -2,13 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Utils from '../../utils/Utils';
+import { changeValueInQuery } from '../../utils/utils';
 import Slider from '../Slider/Slider';
 
-import * as grid from '../../grid.css';
-import * as styles from './search.css';
+import '../../grid.css';
+import './Search.css';
 
-//  TODO: Change visual style of sliders
+//  TODO: Change visual style of sliders & 'queryChange' naming & add access to store
 
 export default class Search extends React.PureComponent {
 	constructor(props) {
@@ -17,17 +17,18 @@ export default class Search extends React.PureComponent {
 		this.query = {
 			beer_name: '',
 			slidersQuery: '',
-		};
+        };
+
 		this.state = {
 			isAdvanced: false,
 		};
 
 		this.queryChange = this.queryChange.bind(this);
-		this.onSearch = this.onSearch.bind(this);
-		this.onSliderChange = this.onSliderChange.bind(this);
+		this.onSearchHandler = this.onSearchHandler.bind(this);
+		this.onSliderHandler = this.onSliderHandler.bind(this);
 	}
 
-	onSearch(event) {
+	onSearchHandler(event) {
 		if (event.key === 'Enter' || event.button === 0) {
 			this.setState({
 				isAdvanced: true,
@@ -36,8 +37,8 @@ export default class Search extends React.PureComponent {
 		}
 	}
 
-	onSliderChange(sliderEvent) {
-		this.query.slidersQuery = Utils.changeValueInQuery(this.query.slidersQuery, sliderEvent.id, sliderEvent.value);
+	onSliderHandler(sliderEvent) {
+		this.query.slidersQuery = changeValueInQuery(this.query.slidersQuery, sliderEvent.id, sliderEvent.value);
 		this.props.onSearch(this.Query + this.query.slidersQuery);
 	}
 
@@ -51,45 +52,45 @@ export default class Search extends React.PureComponent {
 
 	render() {
 		return (
-			<div className={styles.search}>
-				<div className={styles.search__basic}>
-					<input className={`${styles.search__field} ${grid['cl-xl-3']}`} type="search" onChange={this.queryChange} onKeyPress={this.onSearch} placeholder="Search beers..." />
-					<i className={`fa fa-search ${styles.search__icon}`} aria-hidden="true" onClick={this.onSearch} />
+			<div className="search">
+				<div className="search__basic">
+					<input className="search__field cl-xl-3" type="search" onChange={this.queryChange} onKeyPress={this.onSearchHandler} placeholder="Search beers..." />
+					<i className="fa fa-search search__icon" aria-hidden="true" onClick={this.onSearchHandler} />
 				</div>
 
-				<div className={this.state.isAdvanced ? styles.search__advanced : styles.disabled}>
+				<div className={this.state.isAdvanced ? "search__advanced" : "disabled"}>
 					<h6>Filter results</h6>
 					<Slider
 						min="2"
 						max="14"
 						id="abv"
-                        onChange={this.onSliderChange}
-                        nameStyle={`${grid['cl-xl-5']} ${styles.search__name}`}
-                        sliderStyle={`${grid['cl-xl-5']} ${styles.search__slider}`}
+                        onChange={this.onSliderHandler}
+                        nameStyle="cl-xl-5 search__name"
+                        sliderStyle="cl-xl-5 search__slider"
 						step="1"
-						containerStyle={grid.row}
+						containerStyle="row"
 						name="Alcohol by volume"
 					/>
 					<Slider
 						min="0"
 						max="120"
 						id="ibu"
-                        onChange={this.onSliderChange}
-                        nameStyle={`${grid['cl-xl-5']} ${styles.search__name}`}
-                        sliderStyle={`${grid['cl-xl-5']} ${styles.search__slider}`}
+                        onChange={this.onSliderHandler}
+                        nameStyle="cl-xl-5 search__name"
+                        sliderStyle="cl-xl-5 search__slider"
 						step="1"
-						containerStyle={grid.row}
+						containerStyle="row"
 						name="International bitterness units "
 					/>
-					<Slider
-						min="4"
-						max="80"
-						id="cbe"
-                        onChange={this.onSliderChange}
-                        nameStyle={`${grid['cl-xl-5']} ${styles.search__name}`}
-                        sliderStyle={`${grid['cl-xl-5']} ${styles.search__slider}`}
+                    <Slider
+                        min="4"
+                        max="80"
+                        id="cbe"
+                        onChange={this.onSliderHandler}
+                        nameStyle="cl-xl-5 search__name"
+                        sliderStyle="cl-xl-5 search__slider"
 						step="1"
-						containerStyle={grid.row}
+						containerStyle="row"
 						name="Color by EBC"
 					/>
 				</div>

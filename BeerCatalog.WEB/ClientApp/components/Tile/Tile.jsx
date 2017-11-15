@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 
 import Button from '../Button/Button';
 
-import * as grid from '../../grid.css';
-import * as styles from './tile.css';
-
-//  TODO: re-edit this component => stateless component && deal with newProps{isFavorite}
+import '../../grid.css';
+import './Tile.css';
 
 export default class Tile extends React.PureComponent {
 	constructor(props) {
@@ -41,25 +39,25 @@ export default class Tile extends React.PureComponent {
 
 	render() {
 		return (
-			<div className={`${styles.tile} ${grid['cl-xl-3']} ${grid['cl-sm-5']} ${grid['cl-xs']}`}>
-				<div className={styles.tile__header}>
-					<img src={this.props.tile.image_url} alt={this.props.tile.name} className={grid['img-responsive']} />
+			<div className="tile cl-xl-3 cl-sm-5 cl-xs">
+				<div className="tile__header">
+					<img src={this.props.tile.image_url} alt={this.props.tile.name} className="img-responsive" />
 				</div>
-				<div className={styles.tile__content}>
-					<h3 className={styles.tile__title}>{this.props.tile.name}</h3>
-					<span className={styles.tile__tagline}>{this.props.tile.tagline}</span>
-					<div className={`${styles.tile__buttons} ${grid['cl-xl-6']} ${grid['cl-lg-10']} ${grid['cl-xs']}`}>
+				<div className="tile__content">
+					<h3 className="tile__title">{this.props.tile.name}</h3>
+					<span className="tile__tagline">{this.props.tile.tagline}</span>
+					<div className="tile__buttons cl-xl-6 cl-lg-10 cl-xs">
 						<Button
 							onClick={this.openAction}
 							title="open"
-							linkStyle={styles.tile__link}
-							buttonStyle={styles.tile__button}
+                            linkStyle="tile__link"
+                            buttonStyle="tile__button"
 						/>
 						<Button
 							onClick={this.favoriteAction}
 							title={this.state.isFavorite ? 'remove favorite' : 'favorite'}
-							linkStyle={styles.tile__link}
-							buttonStyle={styles.tile__button}
+							linkStyle="tile__link"
+							buttonStyle="tile__button"
 						/>
 					</div>
 				</div>

@@ -10,14 +10,13 @@ const Button = props => (
 
 Button.defaultProps = {
 	buttonStyle: '',
-	title: '',
 	linkStyle: '',
 };
 
 Button.propTypes = {
 	buttonStyle: PropTypes.string,
 	onClick: PropTypes.func.isRequired,
-	title: PropTypes.string,
+	title: PropTypes.string.isRequired,
 	linkStyle: PropTypes.string,
 };
 

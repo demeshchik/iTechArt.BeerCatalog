@@ -1,4 +1,4 @@
-import * as Constants from '../constants/constants';
+import * as Constants from '../constants/reduxConstants';
 
 const initialState = {
 	data: [],

@@ -5,22 +5,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import InfiniteScroll from '../../components/InfiniteScroll/InfiniteScroll';
-import Utils from '../../utils/Utils';
+import { checkItemInStorage } from '../../utils/utils';
 import Search from '../../components/Search/Search';
 import Tile from '../../components/Tile/Tile';
 
 import * as beersActions from '../../actions/beerActions';
 import * as favoritesActions from '../../actions/favoritesActions';
 
-import * as styles from './catalog.css';
-import * as grid from '../../grid.css';
+import './Catalog.css';
+import '../../grid.css';
 
 class Catalog extends React.Component {
 	constructor(props) {
-		super(props);
-		this.state = {
-			queryPath: '',
+        super(props);
+
+        this.data = {
+            queryPath: '',
 			page: 0,
+        };
+
+		this.state = {
 			isFavorite: false,
 		};
 
@@ -30,19 +34,15 @@ class Catalog extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.location.pathname !== nextProps.location.pathname) {
-			this.setState({
-				isFavorite: !this.state.isFavorite,
-				page: 1,
-			}, () => {
-				this.loadData();
-			});
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            this.setState({
+                isFavorite: !this.state.isFavorite,
+            });
+
+            this.data.page = 1;
+            this.loadData();
 		}
 	}
-
-	// shouldComponentUpdate(nextProps) {
-	//    return this.props !== nextProps;
-	// }
 
 	get Tiles() {
 		const thumbnails = this.state.isFavorite ? this.props.favorites.data : this.props.beers.data;
@@ -50,7 +50,7 @@ class Catalog extends React.Component {
 
 		if (thumbnails && thumbnails.length > 0) {
 			thumbnails.forEach((item, index) => {
-				const isFavorite = Utils.checkItemInStorage('favorites', item.id);
+				const isFavorite = checkItemInStorage('favorites', item.id);
 				tiles.push(<Tile
 					key={index}
 					favoriteHandler={event => this.props.favoriteActions.manageFavorites(event.value, event.id)}
@@ -69,40 +69,36 @@ class Catalog extends React.Component {
 
 	loadData() {
 		const props = { ...this.props };
-		this.state.isFavorite ? props.favoriteActions.loadFavorites(this.state.page) : props.beerActions.loadBeers(this.state.queryPath, this.state.page);
+		this.state.isFavorite ? props.favoriteActions.loadFavorites(this.data.page) : props.beerActions.loadBeers(this.data.queryPath, this.data.page);
 	}
 
-	searchHandler(query) {
-		this.setState({
-			queryPath: query,
-			page: 1,
-		}, () => this.props.beerActions.loadBeers(query, 1));
+    searchHandler(query) {
+        this.data = { ...this.data, queryPath: query, page: 1 };
+		this.props.beerActions.loadBeers(query, 1);
 	}
 
-	newResults() {
-		this.setState({
-			page: this.state.page + 1,
-		}, () => {
-			this.loadData();
-		});
+    newResults() {
+        this.data.page = this.data.page + 1;
+
+		this.loadData();
 	}
 
 	render() {
 		return (
 			this.props.error ?
 				<span>{this.props.error}</span> :
-				<div className={`${grid['cl-xl-offset-2']} ${grid['cl-lg-offset-1']} ${grid['cl-xl-6']} ${grid['cl-lg-8']} ${grid['cl-sm-10']}`}>
-					<div className={grid.container}>
+				<div className="cl-xl-offset-2 cl-lg-offset-1 cl-xl-6 cl-lg-8 cl-sm-10">
+					<div className="container">
 						{this.state.isFavorite ?
 							'' :
-							<section className={`${styles.catalog__search} ${grid.container}`}>
+							<section className="catalog__search container">
 								<Search onSearch={this.searchHandler} />
 							</section>
 						}
 					</div>
 
-					<div className={grid.container}>
-						<section className={`${styles.catalog__inner} ${grid.container}`}>
+					<div className="container">
+						<section className="catalog__inner container">
 							<InfiniteScroll
   								initialLoading
 								loadData={this.newResults}

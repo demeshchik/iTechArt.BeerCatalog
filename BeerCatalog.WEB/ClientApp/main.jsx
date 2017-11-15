@@ -13,16 +13,15 @@ import rootReducer from './reducers/rootReducer';
 
 import App from './components/App/App';
 
-
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 function renderApp() {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-		        <BrowserRouter>
-			        <App />
-		        </BrowserRouter>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
 	        </Provider>
         </AppContainer>,
         document.getElementById('react-app'),
