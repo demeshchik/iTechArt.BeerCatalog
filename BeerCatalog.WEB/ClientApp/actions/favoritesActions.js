@@ -1,4 +1,5 @@
-import * as Constants from '../constants/globalConstants';
+import { ITEMS_PER_PAGE } from "../constants/globalConstants";
+import * as Constants from '../constants/reduxConstants';
 
 import { idCombinator } from '../utils/utils';
 import Wrapper from '../utils/Wrapper';
@@ -16,7 +17,7 @@ export function loadFavorites(page) {
 					type: Constants.LOAD_FAVORITES_SUCCESS,
 					data: {
 						beers: response,
-						hasMore: response.length === 12,
+						hasMore: response.length === ITEMS_PER_PAGE,
 					},
 				});
 			}

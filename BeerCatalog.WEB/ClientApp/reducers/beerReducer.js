@@ -11,9 +11,9 @@ export default function reducer(state = initialState, action) {
 		return initialState;
 
 	case Constants.LOAD_BEERS_SUCCESS:
-		const tempArray = [...state.data];
-		tempArray.push(...action.data.beers);
-		return { ...state, data: tempArray, hasMore: action.data.hasMore };
+		const storeBeers = [...state.data];
+		storeBeers.push(...action.data.beers);
+		return { ...state, data: storeBeers, hasMore: action.data.hasMore };
 
 	case Constants.LOAD_BEERS_FAILED:
 		return { ...state, hasMore: false, error: action.data.message };

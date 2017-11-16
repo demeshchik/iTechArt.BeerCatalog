@@ -6,28 +6,24 @@ import '../../grid.css';
 
 //  TODO: Trying to change to stateless component
 
-export default class Header extends React.PureComponent {
-	constructor(props) {
-		super(props);
+const Header = () => {
+	let navRef = null;
 
-		this.show = this.show.bind(this);
+	function show() {
+		navRef.show();
 	}
 
-	show() {
-		this.menu.show();
-	}
+	return (
+		<header className="container">
+			<div className="navbar row">
+				<i className="fa fa-bars" aria-hidden="true" onClick={show} />
 
-	render() {
-		return (
-			<header className="container">
-				<div className="navbar row">
-					<i className="fa fa-bars" aria-hidden="true" onClick={this.show} />
+				<span className="title">Beer Catalog</span>
+			</div>
 
-					<span className="title">Beer Catalog</span>
-				</div>
+			<Navbar ref={(refs) => { navRef = refs; }} />
+		</header>
+	);
+};
 
-				<Navbar ref={(refs) => { this.menu = refs; }} />
-			</header>
-		);
-	}
-}
+export default Header;

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
-import Catalog from '../../containers/Catalog/Catalog';
+import Catalog from '../CatalogContainer/Catalog';
 
 import '../../grid.css';
 import './App.css';

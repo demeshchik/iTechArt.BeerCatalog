@@ -357,10 +357,10 @@ crashlytics-build.properties
 fabric.properties
 /.idea/
 /.vs/
-/BeerCatalog.WEB/bin/
-/BeerCatalog.WEB/obj/
+/BeerCatalog.Web/bin/
+/BeerCatalog.Web/obj/
 .idea/fileTemplates/
-BeerCatalog.WEB/BeerCatalog.WEB.csproj.user
-BeerCatalog.WEB/bin/
-BeerCatalog.WEB/obj/
-/BeerCatalog.WEB/wwwroot/dist/
+BeerCatalog.Web/BeerCatalog.WEB.csproj.user
+BeerCatalog.Web/bin/
+BeerCatalog.Web/obj/
+/BeerCatalog.Web/wwwroot/dist/

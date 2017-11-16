@@ -1,28 +1,21 @@
-/* eslint-disable react/jsx-indent-props,no-undef,no-alert,class-methods-use-this */
+/* eslint-disable react/jsx-indent-props,no-undef,no-alert,class-methods-use-this,react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Button from '../Button/Button';
+
+import * as favoritesActions from '../../actions/favoritesActions';
 
 import '../../grid.css';
 import './Tile.css';
 
-export default class Tile extends React.PureComponent {
+class TileContainer extends React.PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = {
-			isFavorite: props.isFavorite,
-		};
 
 		this.favoriteAction = this.favoriteAction.bind(this);
-	}
-
-	componentWillReceiveProps(newProps) {
-		if (newProps.isFavorite !== this.state.isFavorite) {
-			this.setState({
-				isFavorite: !this.state.isFavorite,
-			});
-		}
 	}
 
 	openAction() {
@@ -30,11 +23,7 @@ export default class Tile extends React.PureComponent {
 	}
 
 	favoriteAction() {
-		this.setState({
-			isFavorite: !this.state.isFavorite,
-		}, () => {
-			this.props.favoriteHandler({ id: this.props.tile.id, value: this.state.isFavorite });
-		});
+        this.props.favoriteActions.manageFavorites(!this.props.isFavorite, this.props.tile.id);
 	}
 
 	render() {
@@ -55,7 +44,7 @@ export default class Tile extends React.PureComponent {
 						/>
 						<Button
 							onClick={this.favoriteAction}
-							title={this.state.isFavorite ? 'remove favorite' : 'favorite'}
+							title={this.props.isFavorite ? 'remove favorite' : 'favorite'}
 							linkStyle="tile__link"
 							buttonStyle="tile__button"
 						/>
@@ -66,8 +55,16 @@ export default class Tile extends React.PureComponent {
 	}
 }
 
-Tile.propTypes = {
+function mapDispatchToProps(dispatch) {
+	return {
+		favoriteActions: bindActionCreators(favoritesActions, dispatch),
+	};
+}
+
+export default connect(null, mapDispatchToProps)(TileContainer);
+
+TileContainer.propTypes = {
 	isFavorite: PropTypes.bool.isRequired,
-	favoriteHandler: PropTypes.func.isRequired,
+	favoriteActions: PropTypes.object.isRequired,
 	tile: PropTypes.shape.isRequired,
 };

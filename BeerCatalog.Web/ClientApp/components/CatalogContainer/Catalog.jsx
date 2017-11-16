@@ -1,15 +1,15 @@
-/* eslint-disable no-unused-expressions,react/no-array-index-key,react/jsx-indent-props,no-mixed-spaces-and-tabs,react/forbid-prop-types */
+/* eslint-disable no-unused-expressions,react/no-array-index-key,react/jsx-indent-props,react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import InfiniteScroll from '../../components/InfiniteScroll/InfiniteScroll';
 import { checkItemInStorage } from '../../utils/utils';
-import Search from '../../components/Search/Search';
-import Tile from '../../components/Tile/Tile';
 
-import * as beersActions from '../../actions/beerActions';
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
+import Search from '../Search/Search';
+import TileContainer from '../TileContainer/TileContainer';
+
+import loadBeers from '../../actions/beerActions';
 import * as favoritesActions from '../../actions/favoritesActions';
 
 import './Catalog.css';
@@ -51,9 +51,8 @@ class Catalog extends React.Component {
 		if (thumbnails && thumbnails.length > 0) {
 			thumbnails.forEach((item, index) => {
 				const isFavorite = checkItemInStorage('favorites', item.id);
-				tiles.push(<Tile
+				tiles.push(<TileContainer
 					key={index}
-					favoriteHandler={event => this.props.favoriteActions.manageFavorites(event.value, event.id)}
 					isFavorite={isFavorite}
 					tile={item}
 				/>);
@@ -69,12 +68,12 @@ class Catalog extends React.Component {
 
 	loadData() {
 		const props = { ...this.props };
-		this.state.isFavorite ? props.favoriteActions.loadFavorites(this.data.page) : props.beerActions.loadBeers(this.data.queryPath, this.data.page);
+		this.state.isFavorite ? props.favoriteActions.loadFavorites(this.data.page) : props.beerActions(this.data.queryPath, this.data.page);
 	}
 
     searchHandler(query) {
         this.data = { ...this.data, queryPath: query, page: 1 };
-		this.props.beerActions.loadBeers(query, 1);
+		this.props.beerActions(query, 1);
 	}
 
     newResults() {
@@ -100,7 +99,7 @@ class Catalog extends React.Component {
 					<div className="container">
 						<section className="catalog__inner container">
 							<InfiniteScroll
-  								initialLoading
+								initialLoading
 								loadData={this.newResults}
 								hasMore={this.HasMore}
 							>
@@ -123,7 +122,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		beerActions: bindActionCreators(beersActions, dispatch),
+        beerActions: bindActionCreators(loadBeers, dispatch),
 		favoriteActions: bindActionCreators(favoritesActions, dispatch),
 	};
 }
@@ -139,6 +138,6 @@ Catalog.propTypes = {
 	favorites: PropTypes.object.isRequired,
 	beers: PropTypes.object.isRequired,
 	favoriteActions: PropTypes.object.isRequired,
-	beerActions: PropTypes.object.isRequired,
+	beerActions: PropTypes.func.isRequired,
 	error: PropTypes.string,
 };

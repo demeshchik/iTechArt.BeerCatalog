@@ -8,7 +8,7 @@ import Slider from '../Slider/Slider';
 import '../../grid.css';
 import './Search.css';
 
-//  TODO: Change visual style of sliders & 'queryChange' naming & add access to store
+//  TODO: Change visual style of sliders & add access to store
 
 export default class Search extends React.PureComponent {
 	constructor(props) {
@@ -23,7 +23,7 @@ export default class Search extends React.PureComponent {
 			isAdvanced: false,
 		};
 
-		this.queryChange = this.queryChange.bind(this);
+		this.onQueryHandler = this.onQueryHandler.bind(this);
 		this.onSearchHandler = this.onSearchHandler.bind(this);
 		this.onSliderHandler = this.onSliderHandler.bind(this);
 	}
@@ -46,7 +46,7 @@ export default class Search extends React.PureComponent {
 		return this.query.beer_name === '' ? '' : `&beer_name=${this.query.beer_name}`;
 	}
 
-	queryChange(event) {
+	onQueryHandler(event) {
 		this.query.beer_name = event.target.value;
 	}
 
@@ -54,7 +54,7 @@ export default class Search extends React.PureComponent {
 		return (
 			<div className="search">
 				<div className="search__basic">
-					<input className="search__field cl-xl-3" type="search" onChange={this.queryChange} onKeyPress={this.onSearchHandler} placeholder="Search beers..." />
+					<input className="search__field cl-xl-3" type="search" onChange={this.onQueryHandler} onKeyPress={this.onSearchHandler} placeholder="Search beers..." />
 					<i className="fa fa-search search__icon" aria-hidden="true" onClick={this.onSearchHandler} />
 				</div>
 

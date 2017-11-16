@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import * as Constants from '../constants/globalConstants';
 
-// TODO: invoke callback
-
 export default class Wrapper {
 	static getBeers(query, page, callback) {
 		const xhr = new XMLHttpRequest();
@@ -15,7 +13,7 @@ export default class Wrapper {
 			if (xhr.readyState === 4) {
 				const response = JSON.parse(xhr.responseText);
 
-				callback(response, xhr.status === 200);
+				callback(response, xhr.status > 400);
 			}
 		};
 	}
@@ -29,9 +27,9 @@ export default class Wrapper {
 
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
-				const response = JSON.parse(xhr.responseText);
+				const response = JSON.parse(xhr.responseText)[0];
 
-				xhr.status === 200 ? callback(response[0], false) : callback(response, true);
+                callback(response, xhr.status > 400);
 			}
 		};
 	}

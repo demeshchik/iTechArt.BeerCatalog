@@ -1,3 +1,4 @@
+import { ITEMS_PER_PAGE } from "../constants/globalConstants";
 import * as Constants from '../constants/reduxConstants';
 
 import Wrapper from '../utils/Wrapper';
@@ -27,7 +28,7 @@ export default function loadBeers(query, page) {
                     type: Constants.LOAD_BEERS_SUCCESS,
                     data: {
                         beers: response,
-                        hasMore: response.length === 12,
+                        hasMore: response.length === ITEMS_PER_PAGE,
                     },
                 });
             }
