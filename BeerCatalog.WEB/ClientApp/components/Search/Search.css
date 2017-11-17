@@ -1,12 +1,12 @@
 .search__name,
 .search__slider {
-    padding-left: 10%;
     box-sizing: border-box;
+    padding-left: 10%;
 }
 
 .search__slider {
-    overflow: hidden;
     display: flex;
+    overflow: hidden;
 }
 
 .search__advanced {
@@ -18,19 +18,23 @@
 }
 
 .search__field {
-    outline: none;
-    border: none;
     font-size: 19px;
-    border-bottom: 1px solid #EDEDED;
+
+    border: none;
+    border-bottom: 1px solid #ededed;
+    outline: none;
 }
 
 .search__icon {
-    color: #828282;
-    margin-left: 5px;
     font-size: 24px;
+
+    margin-left: 5px;
+
+    color: #828282;
 }
 
 .search__basic {
     display: flex;
+
     justify-content: center;
 }
