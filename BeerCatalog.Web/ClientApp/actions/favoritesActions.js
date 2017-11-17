@@ -6,7 +6,7 @@ import Wrapper from '../utils/Wrapper';
 
 export function loadFavorites(page) {
 	return (dispatch) => {
-		Wrapper.getBeers(`&ids=${idCombinator(Wrapper.getFavorites(), page)}`, page, (response, flag) => {
+		Wrapper.getBeers(`&ids=${idCombinator(Wrapper.getFavorites(), page)}`, 1, (response, flag) => {
 			if (flag) {
 				dispatch({
 					type: Constants.LOAD_BEERS_FAILED,
