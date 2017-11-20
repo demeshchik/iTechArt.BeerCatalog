@@ -2,74 +2,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { checkItemInStorage } from '../utils/utils';
 
 import Search from '../components/Search/Search';
-import TileContainer from '../components/TileContainer/TileContainer';
 
 import loadBeers from '../actions/beerActions';
 
 import '../components/CatalogContainer/Catalog.css';
 import '../grid.css';
 
-export function beersHOC(WrappedComponent) {
+export function withBeersStore(WrappedComponent) {
     class HOCWrappedComponent extends React.Component {
         constructor(props) {
             super(props);
 
 			this.data = {
-				queryPath: '',
 				page: 0,
+				queryPath: '',
 			};
 
 			this.searchHandler = this.searchHandler.bind(this);
-            this.newResults = this.newResults.bind(this);
-            this.loadData = this.loadData.bind(this);
+            this.loadNewData = this.loadNewData.bind(this);
         }
 
-        get HasMore() {
-			return this.props.beers.hasMore;
-        }
-
-        get Tiles() {
-			const thumbnails = this.props.beers.data;
-			const tiles = [];
-
-			if (thumbnails && thumbnails.length > 0) {
-				thumbnails.forEach((item, index) => {
-					const isFavorite = checkItemInStorage('favorites', item.id);
-					tiles.push(<TileContainer
-                        key={index}
-                        isFavorite={isFavorite}
-                        tile={item}
-                    />);
-				});
-			}
-
-			return tiles;
-        }
-
-        newResults() {
-            this.data.page = this.data.page + 1;
-
-            this.loadData();
-        }
-
-        loadData() {
-			this.props.beerActions(this.data.queryPath, this.data.page);
+        loadNewData() {
+            this.data.page++;
+            this.props.beerActions(this.data.queryPath, this.data.page);
         }
 
 		searchHandler(query) {
-			this.data = { ...this.data, queryPath: query, page: 1 };
-			this.props.beerActions(query, 1);
+        	this.data = {
+        		queryPath: query,
+				page: 1,
+			};
+			this.props.beerActions(this.data.queryPath, this.data.page);
 		}
 
         render() {
             const newProps = {
-                data: this.Tiles,
-                hasMore: this.HasMore,
-                initialLoading: true,
-                loadData: this.newResults,
+                data: this.props.beers.data,
+                hasMore: this.props.beers.hasMore,
+                loadData: this.loadNewData,
             };
 
 			return (
