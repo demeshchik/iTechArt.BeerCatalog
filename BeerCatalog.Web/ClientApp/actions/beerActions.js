@@ -1,7 +1,7 @@
-import { ITEMS_PER_PAGE } from "../constants/globalConstants";
+import { ITEMS_PER_PAGE } from '../constants/globalConstants';
 import * as Constants from '../constants/reduxConstants';
 
-import Wrapper from '../utils/Wrapper';
+import { getNewBeers } from '../repos/beerRepository';
 
 function clearStore(dispatch) {
     dispatch({
@@ -16,22 +16,21 @@ export default function loadBeers(query, page) {
             clearStore(dispatch)
         }
 
-        Wrapper.getBeers(query, page, (response, flag) => {
-            if (flag) {
+        getNewBeers(query, page)
+            .then(data => {
                 dispatch({
-                    type: Constants.LOAD_BEERS_FAILED,
-                    data: response,
-                });
-            }
-            else {
+					type: Constants.LOAD_BEERS_SUCCESS,
+					data: {
+						beers: data,
+						hasMore: data.length === ITEMS_PER_PAGE,
+					},
+                })
+            })
+            .catch(error => {
                 dispatch({
-                    type: Constants.LOAD_BEERS_SUCCESS,
-                    data: {
-                        beers: response,
-                        hasMore: response.length === ITEMS_PER_PAGE,
-                    },
-                });
-            }
-        });
+					type: Constants.LOAD_BEERS_FAILED,
+					data: error,
+				})
+			});
     };
 }

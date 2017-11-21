@@ -1,16 +1,5 @@
 /* eslint-disable no-param-reassign,no-plusplus */
-import { ITEMS_PER_PAGE } from "../constants/globalConstants";
-
-export function uniqueArray(array) {
-	const obj = {};
-
-	for (let i = 0; i < array.length; i++) {
-		const item = array[i];
-		obj[item] = true;
-	}
-
-	return Object.keys(obj);
-}
+import { ITEMS_PER_PAGE, BASE_PATH } from '../constants/globalConstants';
 
 export function checkItemInStorage(storageName, item) {
 	const storageArray = typeof localStorage.getItem(storageName) === 'string' ? JSON.parse(localStorage.getItem(storageName)) : [];
@@ -45,4 +34,27 @@ export function idCombinator(array, page) {
 		str += `${item}|`;
 	});
 	return str.substring(0, str.length - 1);
+}
+
+export function requestServer(query) {
+	return new Promise ((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		const path = `${BASE_PATH}?${query}`;
+
+		xhr.open('get', path, true);
+		xhr.send();
+
+		xhr.onreadystatechange = () => {
+			if (xhr.readyState === 4) {
+				if (xhr.status < 400) {
+					resole(xhr.responseText);
+				}
+				else {
+					let error = new Error(this.statusText);
+					error.code = this.status;
+					reject(error);
+				}
+			}
+		};
+	})
 }

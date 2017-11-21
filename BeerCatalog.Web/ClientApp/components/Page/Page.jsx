@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InfiniteScroll from '../components/InfiniteScroll/InfiniteScroll';
-import TileContainer from '../components/TileContainer/TileContainer';
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
+import TileContainer from '../TileContainer/TileContainer';
 
 export default class Page extends React.Component {
 	get Tiles() {

@@ -7,8 +7,8 @@ import Search from '../components/Search/Search';
 
 import loadBeers from '../actions/beerActions';
 
-import '../components/CatalogContainer/Catalog.css';
 import '../grid.css';
+import './beersPage.css';
 
 export function withBeersStore(WrappedComponent) {
     class HOCWrappedComponent extends React.Component {

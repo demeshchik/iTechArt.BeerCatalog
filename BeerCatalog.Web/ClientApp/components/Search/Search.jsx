@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { changeValueInQuery } from '../../utils/utils';
 import Slider from '../Slider/Slider';
+
+import { changeValueInQuery } from '../../utils/utils';
 
 import '../../grid.css';
 import './Search.css';

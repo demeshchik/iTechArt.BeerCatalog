@@ -1,10 +1,8 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 
-import './Header.css';
 import '../../grid.css';
-
-//  TODO: Trying to change to stateless component
+import './Header.css';
 
 const Header = () => {
 	let navRef = null;

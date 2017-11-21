@@ -1,39 +1,40 @@
-import { ITEMS_PER_PAGE } from "../constants/globalConstants";
+/* eslint-disable no-unused-expressions */
+import { ITEMS_PER_PAGE } from '../constants/globalConstants';
 import * as Constants from '../constants/reduxConstants';
 
 import { idCombinator } from '../utils/utils';
-import Wrapper from '../utils/Wrapper';
+import { getNewBeers } from '../repos/beerRepository';
+import * as favoritesRepository from '../repos/favoritesRepository';
 
 export function loadFavorites(page) {
 	return (dispatch) => {
-		Wrapper.getBeers(`&ids=${idCombinator(Wrapper.getFavorites(), page)}`, 1, (response, flag) => {
-			if (flag) {
-				dispatch({
-					type: Constants.LOAD_BEERS_FAILED,
-					data: response,
-				});
-			} else {
+		getNewBeers(`&ids=${idCombinator(favoritesRepository.getFavorites(), page)}`, 1)
+			.then(data => {
 				dispatch({
 					type: Constants.LOAD_FAVORITES_SUCCESS,
 					data: {
-						beers: response,
-						hasMore: response.length === ITEMS_PER_PAGE,
+						beers: data,
+						hasMore: data.length === ITEMS_PER_PAGE,
 					},
+				})
+			})
+			.catch(error => {
+				dispatch({
+					type: Constants.LOAD_BEERS_FAILED,
+					data: error,
 				});
-			}
-		});
+			});
+
 	};
 }
 
-export function manageFavorites(flag, item) {
+export function manageFavorites(flag, id) {
 	return (dispatch) => {
-		Wrapper.favoriteManager(flag, item);
+		flag ? favoritesRepository.addFavorite(id) : favoritesRepository.removeFavorite(id);
 
-		Wrapper.getBeer(item, (beer) => {
-			dispatch({
-				type: Constants.MANAGE_FAVORITE,
-				data: { flag, beer },
-			});
+		dispatch({
+			type: Constants.MANAGE_FAVORITE,
+            data: { flag, id },
 		});
 	};
 }

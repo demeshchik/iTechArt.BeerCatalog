@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 import Button from '../Button/Button';
 
-import * as favoritesActions from '../../actions/favoritesActions';
+import { manageFavorites } from '../../actions/favoritesActions';
 
 import '../../grid.css';
 import './Tile.css';
@@ -22,8 +22,8 @@ class TileContainer extends React.PureComponent {
 		alert('Open button pressed');
 	}
 
-	favoriteAction() {
-        this.props.favoriteActions.manageFavorites(!this.props.isFavorite, this.props.tile.id);
+    favoriteAction() {
+        this.props.manageFavorite(!this.props.isFavorite, this.props.tile.id);
 	}
 
 	render() {
@@ -43,8 +43,8 @@ class TileContainer extends React.PureComponent {
                             buttonStyle="tile__button"
 						/>
 						<Button
-							onClick={this.favoriteAction}
-							title={this.props.isFavorite ? 'remove favorite' : 'favorite'}
+                            onClick={this.favoriteAction}
+                            title={this.props.isFavorite ? 'remove favorite' : 'favorite'}
 							linkStyle="tile__link"
 							buttonStyle="tile__button"
 						/>
@@ -57,7 +57,7 @@ class TileContainer extends React.PureComponent {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		favoriteActions: bindActionCreators(favoritesActions, dispatch),
+        manageFavorite: bindActionCreators(manageFavorites, dispatch),
 	};
 }
 
@@ -65,6 +65,6 @@ export default connect(null, mapDispatchToProps)(TileContainer);
 
 TileContainer.propTypes = {
 	isFavorite: PropTypes.bool.isRequired,
-	favoriteActions: PropTypes.object.isRequired,
+    manageFavorite: PropTypes.func.isRequired,
 	tile: PropTypes.shape.isRequired,
 };

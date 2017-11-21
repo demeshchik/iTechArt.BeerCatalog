@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 
 import * as favoritesActions from '../actions/favoritesActions';
 
-import '../components/CatalogContainer/Catalog.css';
 import '../grid.css';
 
 export function withFavoritesStore(WrappedComponent) {
