@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Style.css';
+
 export default class Slider extends React.PureComponent {
 	constructor(props) {
 		super(props);
