@@ -22,7 +22,7 @@ export function changeValueInQuery(queryString, paramName, newValue) {
 		paramsString += item;
 	});
 
-	const finalString = checker ? paramsString : `${paramsString}&${id}_gt=${newValue}`;
+    const finalString = checker ? paramsString : `${paramsString}&${paramName}_gt=${newValue}`;
 	return finalString.substring(1);
 }
 
@@ -47,7 +47,7 @@ export function requestServer(query) {
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
 				if (xhr.status < 400) {
-					resole(xhr.responseText);
+					resolve(xhr.responseText);
 				}
 				else {
 					let error = new Error(this.statusText);

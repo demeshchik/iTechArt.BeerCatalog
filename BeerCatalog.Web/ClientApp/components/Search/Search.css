@@ -4,6 +4,10 @@
     padding-left: 10%;
 }
 
+.search__header {
+    text-align: center;
+}
+
 .search__slider {
     display: flex;
     overflow: hidden;

@@ -59,8 +59,8 @@ export default class Search extends React.PureComponent {
 					<i className="fa fa-search search__icon" aria-hidden="true" onClick={this.onSearchHandler} />
 				</div>
 
-				<div className={this.state.isAdvanced ? "search__advanced" : "disabled"}>
-					<h6>Filter results</h6>
+                <div className={this.state.isAdvanced ? "search__advanced" : "disabled"}>
+                    <h6 className="search__header">Filter results</h6>
 					<Slider
 						min="2"
 						max="14"
