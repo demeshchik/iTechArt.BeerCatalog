@@ -29,6 +29,7 @@ export default class Slider extends React.PureComponent {
                 <div className={this.props.sliderStyle}>
 					<span>{this.state.value}</span>
 					<input
+						className="slider slider-info"
 						type="range"
 						id={this.props.id}
 						min={this.props.min}

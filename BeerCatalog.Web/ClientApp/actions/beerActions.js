@@ -10,7 +10,7 @@ function clearStore(dispatch) {
     });
 }
 
-export default function loadBeers(query, page) {
+export function loadBeers(query, page) {
     return (dispatch) => {
         if (page === 1) {
             clearStore(dispatch)
@@ -33,4 +33,13 @@ export default function loadBeers(query, page) {
 				})
 			});
     };
+}
+
+export function selectBeer(id) {
+	return (dispatch) => {
+		dispatch({
+			type: Constants.USER_SELECT_BEER,
+			data: id,
+		})
+	}
 }

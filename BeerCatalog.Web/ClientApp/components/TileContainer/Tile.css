@@ -28,7 +28,7 @@
 .tile__content {
     display: flex;
 
-    height: 100px;
+    height: 130px;
     padding: 15px;
 
     color: #ffffff;
@@ -41,25 +41,10 @@
     margin: 0;
 }
 
-.tile__button {
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.tile__button:hover {
-    cursor: pointer;
-}
-
-
-
 .tile__buttons {
     display: flex;
 
     justify-content: space-between;
-}
-
-.tile__button:hover > .tile__link {
-    text-decoration: underline;
 }
 
 @media screen and (max-width: 1024px) {

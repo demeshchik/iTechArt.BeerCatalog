@@ -1,0 +1,11 @@
+.picture {
+    position: fixed;
+    right: 0;
+    float: left;
+    width: 25%;
+    background: red;
+}
+
+.wrapper {
+    width: 75%;
+}

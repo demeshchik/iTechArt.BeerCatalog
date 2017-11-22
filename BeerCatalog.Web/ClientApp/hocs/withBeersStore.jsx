@@ -1,11 +1,11 @@
-﻿/* eslint-disable no-unused-vars,react/jsx-indent-props,react/no-array-index-key,import/prefer-default-export,react/prop-types */
+﻿/* eslint-disable no-unused-vars,react/jsx-indent-props,react/no-array-index-key,import/prefer-default-export,react/prop-types,no-plusplus */
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Search from '../components/Search/Search';
 
-import loadBeers from '../actions/beerActions';
+import { loadBeers } from '../actions/beerActions';
 
 import '../grid.css';
 import './beersPage.css';

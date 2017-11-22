@@ -8,11 +8,11 @@ export function addFavorite(item) {
 	let favorites = getFavorites();
 	favorites.push(item);
 
-	localStorage.setItem(STORE_NAME, JSON.stringify(faves));
+	localStorage.setItem(STORE_NAME, JSON.stringify(favorites));
 }
 
 export function removeFavorite(item) {
-	const favorites = Wrapper.getFavorites();
+	const favorites = getFavorites();
 
 	favorites.splice(favorites.indexOf(item), 1);
 
