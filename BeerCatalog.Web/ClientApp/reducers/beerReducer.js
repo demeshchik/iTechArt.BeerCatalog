@@ -38,9 +38,9 @@ export default function reducer(state = initialState, action) {
         storeData[requiredItemIndex].isFavorite = action.data.flag;
         return { ...state, data: storeData };
 
-    case Constants.USER_SELECT_BEER:
-    	const storeBeer = state.data.find((item) => item.beer.id === action.data);
-		return {...state, selectedBeer: storeBeer};
+	case Constants.USER_SELECT_BEER:
+    	const storeBeer = state.data.find((item) => item.beer.id === parseInt(action.data));
+		return { ...state, selectedBeer: { ...storeBeer } };
 
 	default:
 		return state;

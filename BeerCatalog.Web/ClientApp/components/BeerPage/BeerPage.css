@@ -6,6 +6,11 @@
     background: red;
 }
 
-.wrapper {
-    width: 75%;
+.beer-page__title {
+    margin: 0;
+    padding: 20px 0;
+}
+
+.tagline {
+    font-style: italic;
 }

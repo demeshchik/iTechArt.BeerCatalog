@@ -37,6 +37,7 @@ class TileContainer extends React.PureComponent {
 						<Link className="btn btn-white btn-simple btn-app" to={"/beers/" + this.props.tile.id}>Open</Link>
 						<Button
                             onClick={this.favoriteAction}
+							class="btn-white btn-simple btn-app"
                             title={this.props.isFavorite ? 'remove favorite' : 'favorite'}
 						/>
 					</div>

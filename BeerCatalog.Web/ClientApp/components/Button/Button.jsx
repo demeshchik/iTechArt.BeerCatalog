@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../main.css';
-
 const Button = props => (
-	<button className="btn btn-white btn-simple btn-app" onClick={props.onClick}>{props.title}</button>
+	<button className={"btn " + props.class} onClick={props.onClick}>{props.title}</button>
 );
 
+Button.defaultProps = {
+	class: '',
+};
+
 Button.propTypes = {
+	class: PropTypes.string,
 	onClick: PropTypes.func.isRequired,
 	title: PropTypes.string.isRequired,
 };
