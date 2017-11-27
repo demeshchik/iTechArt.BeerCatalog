@@ -58,3 +58,36 @@ export function requestServer(query) {
 		};
 	})
 }
+
+export function getArrayMash(targetMash) {
+	let array = [];
+
+	targetMash.forEach(item => {
+		let mash = `${item.duration} minutes at ${item.temp.value} °C`;
+		array.push(mash);
+	});
+
+	return array;
+}
+
+//TODO: fix logic of getArrayIngredients
+
+export function getArrayIngredients(targetIngredients) {
+	let generatedObject = {};
+
+	for (let key in targetIngredients) {
+		let ingredient = targetIngredients[key];
+
+		if (typeof ingredient === 'string') {
+			generatedObject[key] = ingredient;
+		} else {
+			let array = [];
+			ingredient.forEach((item) => {
+				let mash = `${item.duration} minutes at ${item.temp.value} °C`;
+				array.push(mash);
+			});
+		}
+	}
+
+	return generatedObject;
+}

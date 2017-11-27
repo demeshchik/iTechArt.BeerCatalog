@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-indent-props,no-undef,no-alert,class-methods-use-this,react/forbid-prop-types,jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-indent-props,jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';

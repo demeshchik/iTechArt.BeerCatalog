@@ -1,0 +1,18 @@
+.tooltip__container {
+    position: relative;
+}
+.tooltip__container .tooltip__body {
+    position: absolute;
+    width:140px;
+    color: #FFFFFF;
+    background: #000000;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 25px;
+}
+
+
+.tooltip__container:hover .tooltip__body {
+    visibility: visible;
+    opacity: 0.8;
+}
