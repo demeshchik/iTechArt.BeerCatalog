@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-prop-types,react/jsx-indent-props,indent,react/no-array-index-key,class-methods-use-this */
+﻿/* eslint-disable react/forbid-prop-types,react/jsx-indent-props,indent,react/no-array-index-key,class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import Button from '../Button/Button';
 import Tooltip from '../Tooltip/Tooltip';
 import List from '../List/List';
-import ListItem from '../List/ListItem';
+import ListItem from '../ListItem/ListItem';
 import Content from '../Content/Content';
 
 import { getArrayMash, getArrayIngredients } from '../../utils/utils';

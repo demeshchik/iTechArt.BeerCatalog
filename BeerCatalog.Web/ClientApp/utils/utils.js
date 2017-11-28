@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign,no-plusplus */
+﻿/* eslint-disable no-param-reassign,no-plusplus */
 import { ITEMS_PER_PAGE, BASE_PATH } from '../constants/globalConstants';
 
 export function checkItemInStorage(storageName, item) {
@@ -69,8 +69,6 @@ export function getArrayMash(targetMash) {
 
 	return array;
 }
-
-//TODO: fix logic of getArrayIngredients
 
 export function getArrayIngredients(targetIngredients) {
 	let generatedObject = {};

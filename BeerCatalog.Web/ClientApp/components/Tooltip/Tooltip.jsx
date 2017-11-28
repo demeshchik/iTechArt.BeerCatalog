@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import './Tooltip.css';
 
-//TODO: add possibility to custom stylization
-
 export default class Tooltip extends React.Component {
 	render() {
 		return (
