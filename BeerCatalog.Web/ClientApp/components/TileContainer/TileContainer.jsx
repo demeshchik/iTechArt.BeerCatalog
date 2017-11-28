@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-indent-props,jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-indent-props,jsx-a11y/anchor-is-valid,react/forbid-prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -58,5 +58,5 @@ export default connect(null, mapDispatchToProps)(TileContainer);
 TileContainer.propTypes = {
 	isFavorite: PropTypes.bool.isRequired,
     manageFavorite: PropTypes.func.isRequired,
-	tile: PropTypes.shape.isRequired,
+	tile: PropTypes.object.isRequired,
 };

@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-prop-types,react/jsx-indent-props,indent,react/no-array-index-key */
+/* eslint-disable react/forbid-prop-types,react/jsx-indent-props,indent,react/no-array-index-key,class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -8,29 +8,49 @@ import Button from '../Button/Button';
 import Tooltip from '../Tooltip/Tooltip';
 import List from '../List/List';
 import ListItem from '../List/ListItem';
-import Content from '../Content';
+import Content from '../Content/Content';
 
-import { getArrayMash } from '../../utils/utils';
+import { getArrayMash, getArrayIngredients } from '../../utils/utils';
 
 import { selectBeer } from '../../actions/beerActions';
+import { manageFavorites } from '../../actions/favoritesActions';
 
 import '../../grid.css';
 import './BeerPage.css';
 
-//TODO: fix logic of ingredients's getter
 
 class BeerPage extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			isFavorite: false,
+		};
+
+		this.changeFavoriteValue = this.changeFavoriteValue.bind(this);
+	}
 
 	componentWillMount() {
 		const { beerActions, match} = this.props;
 		beerActions(match.params.id);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.selectedBeer.isFavorite !== nextProps.selectedBeer.isFavorite) {
+			this.setState({
+				isFavorite: nextProps.selectedBeer.isFavorite,
+			})
+		}
+	}
+
 	get Properties() {
-		return <Tooltip
-			text={<i className="material-icons">info_outline</i>}
-			toolip="Hello, man!"
-		/>
+		const beer = { ...this.props.selectedBeer.beer };
+
+		return [
+			this.getPrettyProperty("ABV", "Alcohol by volume", beer.abv),
+			this.getPrettyProperty("IBU", "International bitterness units", beer.ibu),
+			this.getPrettyProperty("EBC", "Color by EBC", beer.ebc),
+		];
 	}
 
 	get FoodPairings() {
@@ -46,62 +66,95 @@ class BeerPage extends React.Component {
 
 	get Method() {
 		const method = { ...this.props.selectedBeer.beer.method };
-		let mashes = getArrayMash(method.mash_temp);
-		let fermentation = `Perfom at ${method.fermentation.temp.value} °C`;
-		let twist = method.twist ? method.twist : '';
+		let prettyMethod = {
+			mash: getArrayMash(method.mash_temp),
+			fermentation: [`Perfom at ${method.fermentation.temp.value} °C`],
+			twist: [method.twist ? method.twist : ''],
+		};
 
-		return [
-			<ListItem key={"method-component-mash"}><Content header="Mash" data={mashes}/></ListItem>,
-			<ListItem key={"method-component-fermentation"}><Content header="Fermentation" data={[fermentation]}/></ListItem>,
-			<ListItem key={"method-component-twist"}><Content header="Twist" data={[twist]}/></ListItem>,
-		];
+		return this.getContentArray("method", prettyMethod);
 	}
 
 	get Ingredients() {
-		const method = { ...this.props.selectedBeer.beer.ingredients };
-		let mashes = getArrayMash(method.mash_temp);
-		let fermentation = `Perfom at ${method.fermentation.temp.value} °C`;
-		let twist = method.twist ? method.twist : '';
+		const ingredients = { ...this.props.selectedBeer.beer.ingredients };
+		let prettyIngredients = getArrayIngredients(ingredients);
 
-		return [
-			<ListItem key={"method-component-mash"}><Content header="Mash" data={mashes}/></ListItem>,
-			<ListItem key={"method-component-fermentation"}><Content header="Fermentation" data={[fermentation]}/></ListItem>,
-			<ListItem key={"method-component-twist"}><Content header="Twist" data={[twist]}/></ListItem>,
-		];
+		return this.getContentArray("ingredient", prettyIngredients);
+	}
+
+	getPrettyProperty(property, tooltip, value) {
+		return (
+			<ListItem key={"property-component-" + property}>
+				<Content containerStyle="property">
+					{property}
+					<Tooltip
+						class="property__tooltip"
+						text="info_outline"
+						tooltip={tooltip}
+					/>
+					<span className="label label-default property__value">{value}</span>
+				</Content>
+			</ListItem>
+		);
+	}
+
+	getContentArray(component, targetObject) {
+		let array = [];
+
+		Object.keys(targetObject).forEach(key => {
+			let content = <ListItem key={component + "-component-" + key}><Content header={key} data={targetObject[key]}/></ListItem>;
+			array.push(content);
+		});
+
+		return array;
+	}
+
+	changeFavoriteValue() {
+		const beer = this.props.selectedBeer;
+
+        this.props.manageFavorites(!beer.isFavorite, beer.beer.id);
+
+        this.setState({
+            isFavorite: !this.state.isFavorite,
+        })
 	}
 
 	render() {
 		return (
 			!this.props.selectedBeer.beer ?
 			<span>Loading...</span> :
-			<div className="cl-xl-8 cl-xs cl-xl-offset-1 cl-lg-offset-1">
-				<div>
-					<div className="header">
+			<div className="cl-xl-7 cl-sm-10 cl-xs cl-xl-offset-1 cl-lg-offset-1">
+				<div className="beer-page">
+					<div className="beer-page__picture">
+						<img className="img-responsive" src={this.props.selectedBeer.beer.image_url} alt={this.props.selectedBeer.beer.name} />
+					</div>
+
+					<div className="beer-page__header">
 						<h2 className="beer-page__title">{this.props.selectedBeer.beer.name}</h2>
-						<div className="tagline">{this.props.selectedBeer.beer.tagline}</div>
-						<Button onClick={() => alert("Hello")}
-								title="Add to Favorite"
+						<div className="beer-page__tagline">{this.props.selectedBeer.beer.tagline}</div>
+						<Button onClick={this.changeFavoriteValue}
+								title={this.state.isFavorite ? 'remove favorite' : 'add to favorite'}
 								class="btn-info"
 						/>
 					</div>
 
-					<div className="description">
+					<div className="beer-page__description description">
 						{this.props.selectedBeer.beer.description}
 					</div>
 
-					<div className="container">
-						<div className="properties cl-xl-5">
-							<h4>Properties</h4>
+					<div className="beer-page__properties properties">
+						<div className="properties__section cl-xl-5 cl-xs">
+							<h5>Properties</h5>
 
-							<div>
+							<List class="cl-xl-8 cl-xs">
 								{this.Properties}
-							</div>
+							</List>
 						</div>
 
-						<div className="food-pairing cl-xl-5">
-							<h4>Food Pairing</h4>
+						<div className="properties__pairing pairing cl-xl-5 cl-xs">
+							<h5>Food Pairing</h5>
 
-							<List>
+							<List class="cl-xl-8 cl-xs">
 								{this.FoodPairings}
 							</List>
 						</div>
@@ -113,16 +166,18 @@ class BeerPage extends React.Component {
 						<div>{this.props.selectedBeer.beer.brewers_tips}</div>
 
 						<div className="container">
-							<div className="ingredients cl-xl-5">
-								<h4>Ingredients</h4>
+							<div className="ingredients cl-xl-5 cl-xs">
+								<h5>Ingredients</h5>
 
-
+								<List class="cl-xl-8 cl-xs">
+									{this.Ingredients}
+								</List>
 							</div>
 
-							<div className="method cl-xl-5">
-								<h4>Method</h4>
+							<div className="method cl-xl-5 cl-xs">
+								<h5>Method</h5>
 
-								<List>
+								<List class="cl-xl-8 cl-xs">
 									{this.Method}
 								</List>
 							</div>
@@ -143,6 +198,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		beerActions: bindActionCreators(selectBeer, dispatch),
+		manageFavorites: bindActionCreators(manageFavorites, dispatch),
 	};
 }
 
@@ -152,4 +208,5 @@ BeerPage.propTypes = {
 	beerActions: PropTypes.func.isRequired,
 	match: PropTypes.object.isRequired,
 	selectedBeer: PropTypes.object.isRequired,
+	manageFavorites: PropTypes.func.isRequired,
 };

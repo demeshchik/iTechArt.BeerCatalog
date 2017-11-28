@@ -1,9 +1,11 @@
 import React from 'react';
 import PropType from 'prop-types';
 
+import './List.css';
+
 const List = (props) => {
 	return (
-		<ul className={props.class}>
+		<ul className={'list ' + props.class}>
 			{props.children}
 		</ul>
 	)

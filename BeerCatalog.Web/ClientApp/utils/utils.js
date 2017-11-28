@@ -75,19 +75,22 @@ export function getArrayMash(targetMash) {
 export function getArrayIngredients(targetIngredients) {
 	let generatedObject = {};
 
-	for (let key in targetIngredients) {
-		let ingredient = targetIngredients[key];
+	Object.keys(targetIngredients).forEach(key => {
+		const ingredient = targetIngredients[key];
 
 		if (typeof ingredient === 'string') {
-			generatedObject[key] = ingredient;
+			generatedObject[key] = [ingredient];
 		} else {
 			let array = [];
+
 			ingredient.forEach((item) => {
-				let mash = `${item.duration} minutes at ${item.temp.value} °C`;
+				let mash = `${item.name} - ${item.amount.value} ${item.amount.unit}`;
 				array.push(mash);
 			});
+
+			generatedObject[key] = array;
 		}
-	}
+	});
 
 	return generatedObject;
 }

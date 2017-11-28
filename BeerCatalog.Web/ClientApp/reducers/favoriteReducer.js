@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import * as Constants from '../constants/reduxConstants';
 const remove = require('lodash.remove');
+const intersectionby = require('lodash.intersectionby');
 
 const initialState = {
 	data: [],
@@ -12,16 +13,18 @@ export default function reducer(state = initialState, action) {
 	case Constants.LOAD_FAVORITES_SUCCESS:
 		const storeArray = [...state.data];
 
-		storeArray.push(...action.data.beers);
+		let transformedArray = action.data.beers.map(item => {
+			return {
+				isFavorite: true,
+				beer: { ...item },
+			}
+		});
 
-        let transformedArray = storeArray.map(item => {
-            return {
-                isFavorite: true,
-                beer: { ...item },
-            }
-        });
+		storeArray.push(...transformedArray);
 
-        return { ...state, data: transformedArray, hasMore: action.data.hasMore };
+		let uniqueArray = intersectionby(storeArray, (item) => item.beer.id);
+
+        return { ...state, data: uniqueArray, hasMore: action.data.hasMore };
 
     case Constants.MANAGE_FAVORITE:
 		const storeFaves = [...state.data];
