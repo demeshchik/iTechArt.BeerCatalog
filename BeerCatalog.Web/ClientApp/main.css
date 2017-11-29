@@ -7,6 +7,11 @@ body {
 }
 
 .btn-app {
+    text-decoration: none;
     margin: 0;
     padding: 0;
+}
+
+.btn-app:hover {
+    cursor: pointer;
 }
