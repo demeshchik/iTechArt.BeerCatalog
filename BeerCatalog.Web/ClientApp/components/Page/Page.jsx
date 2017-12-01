@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-prop-types,react/no-array-index-key,react/jsx-indent-props,no-mixed-spaces-and-tabs */
+/* eslint-disable react/forbid-prop-types,react/no-array-index-key,react/jsx-indent-props*/
 import React from 'react';
 import PropTypes from 'prop-types';
 

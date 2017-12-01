@@ -1,16 +1,16 @@
-.navbar {
+.sidebar__nav {
     padding: 0;
 
     list-style-type: none;
 }
 
-.navbar__item {
+.nav__item {
     font-size: 25px;
 
     padding: 10px;
 }
 
-.navbar__item:after {
+.nav__item:after {
     display: block;
 
     width: 0;
@@ -22,17 +22,17 @@
     background: #106cc8;
 }
 
-.navbar__item:hover:after {
+.nav__item:hover:after {
     width: 100%;
 }
 
-.navbar__item a {
+.nav__item a {
     text-decoration: none;
 
     color: #ffffff;
 }
 
-.sidenav {
+.sidebar {
     position: fixed;
     z-index: 1;
     top: 0;
@@ -50,12 +50,12 @@
     background-color: #111111;
 }
 
-.visible {
+.sidebar_v {
     width: 250px;
 }
 
 @media screen and (max-width: 640px) {
-    .visible {
+    .sidebar_v {
         width: 100%;
     }
 }

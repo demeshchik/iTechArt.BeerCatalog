@@ -13,33 +13,33 @@ function clearStore(dispatch) {
 export function loadBeers(query, page) {
     return (dispatch) => {
         if (page === 1) {
-            clearStore(dispatch)
+            clearStore(dispatch);
         }
 
         getNewBeers(query, page)
-            .then(data => {
+            .then((data) => {
                 dispatch({
-					type: Constants.LOAD_BEERS_SUCCESS,
-					data: {
-						beers: data,
-						hasMore: data.length === ITEMS_PER_PAGE,
-					},
-                })
+                    type: Constants.LOAD_BEERS_SUCCESS,
+                    data: {
+                        beers: data,
+                        hasMore: data.length === ITEMS_PER_PAGE,
+                    },
+                });
             })
-            .catch(error => {
+            .catch((error) => {
                 dispatch({
-					type: Constants.LOAD_BEERS_FAILED,
-					data: error,
-				})
-			});
+                    type: Constants.LOAD_BEERS_FAILED,
+                    data: error,
+                });
+            });
     };
 }
 
 export function selectBeer(id) {
-	return (dispatch) => {
-		dispatch({
-			type: Constants.USER_SELECT_BEER,
-			data: id,
-		})
-	}
+    return (dispatch) => {
+        dispatch({
+            type: Constants.USER_SELECT_BEER,
+            data: id,
+        });
+    };
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Style.css';
+import './Slider.css';
 
 export default class Slider extends React.PureComponent {
 	constructor(props) {
@@ -29,7 +29,6 @@ export default class Slider extends React.PureComponent {
                 <div className={this.props.sliderStyle}>
 					<span>{this.state.value}</span>
 					<input
-						className="slider slider-info"
 						type="range"
 						id={this.props.id}
 						min={this.props.min}

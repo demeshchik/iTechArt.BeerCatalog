@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Navbar.css';
+import './Sidebar.css';
 
 export default class Navbar extends React.PureComponent {
 	constructor(props) {
@@ -32,10 +32,10 @@ export default class Navbar extends React.PureComponent {
 
 	render() {
 		return (
-			<div className={`${this.state.visible ? "visible" : ""} sidenav`}>
-				<ul className="navbar">
-                    <li className="navbar__item"><Link to="/">Home</Link></li>
-                    <li className="navbar__item"><Link to="/fave">Favorites</Link></li>
+			<div className={`sidebar ${this.state.visible ? "sidebar_v" : ""}`}>
+				<ul className="sidebar__nav nav">
+                    <li className="nav__item"><Link to="/">Home</Link></li>
+                    <li className="nav__item"><Link to="/fave">Favorites</Link></li>
 				</ul>
 			</div>
 		);

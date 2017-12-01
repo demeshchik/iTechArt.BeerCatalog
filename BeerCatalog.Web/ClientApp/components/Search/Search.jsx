@@ -9,7 +9,7 @@ import { changeValueInQuery } from '../../utils/utils';
 import '../../grid.css';
 import './Search.css';
 
-//  TODO: Change visual style of sliders & add access to store
+//  TODO: Add access to store
 
 export default class Search extends React.PureComponent {
 	constructor(props) {
@@ -69,7 +69,7 @@ export default class Search extends React.PureComponent {
                         nameStyle="cl-xl-5 search__name"
                         sliderStyle="cl-xl-5 search__slider"
 						step="1"
-						containerStyle="row"
+						containerStyle="row flexible"
 						name="Alcohol by volume"
 					/>
 					<Slider
@@ -80,7 +80,7 @@ export default class Search extends React.PureComponent {
                         nameStyle="cl-xl-5 search__name"
                         sliderStyle="cl-xl-5 search__slider"
 						step="1"
-						containerStyle="row"
+						containerStyle="row flexible"
 						name="International bitterness units "
 					/>
                     <Slider
@@ -91,7 +91,7 @@ export default class Search extends React.PureComponent {
                         nameStyle="cl-xl-5 search__name"
                         sliderStyle="cl-xl-5 search__slider"
 						step="1"
-						containerStyle="row"
+						containerStyle="row flexible"
 						name="Color by EBC"
 					/>
 				</div>

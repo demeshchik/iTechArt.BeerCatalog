@@ -30,8 +30,8 @@ export function withBeersStore(WrappedComponent) {
         }
 
 		searchHandler(query) {
-        	this.data = {
-        		queryPath: query,
+            this.data = {
+                queryPath: query,
 				page: 1,
 			};
 			this.props.beerActions(this.data.queryPath, this.data.page);

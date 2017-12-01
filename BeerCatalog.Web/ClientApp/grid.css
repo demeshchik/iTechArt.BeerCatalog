@@ -7,6 +7,10 @@
     max-height: 100%;
 }
 
+.flexible {
+    display: flex;
+}
+
 .container,
 .row {
     float: left;

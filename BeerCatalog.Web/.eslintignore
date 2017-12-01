@@ -1,0 +1,4 @@
+/wwwroot/dist/**
+/node_modules/*
+/app/common/dependencies/**
+webpack.config.js

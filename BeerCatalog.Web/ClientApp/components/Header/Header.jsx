@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
 
 import '../../grid.css';
 import './Header.css';
@@ -19,7 +19,7 @@ const Header = () => {
 				<span className="title">Beer Catalog</span>
 			</div>
 
-			<Navbar ref={(refs) => { navRef = refs; }} />
+			<Sidebar ref={(refs) => { navRef = refs; }} />
 		</header>
 	);
 };

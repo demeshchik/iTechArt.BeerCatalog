@@ -3,6 +3,6 @@ import beersReducer from './beerReducer';
 import favoritesReducer from './favoriteReducer';
 
 export default combineReducers({
-	beers: beersReducer,
-	favorites: favoritesReducer,
+    beers: beersReducer,
+    favorites: favoritesReducer,
 });

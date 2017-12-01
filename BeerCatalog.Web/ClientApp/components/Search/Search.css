@@ -10,7 +10,7 @@
 
 .search__slider {
     display: flex;
-    overflow: hidden;
+    justify-content: space-between;
 }
 
 .search__advanced {
