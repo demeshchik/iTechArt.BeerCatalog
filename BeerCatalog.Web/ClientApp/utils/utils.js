@@ -1,5 +1,5 @@
-/* eslint-disable no-param-reassign,no-plusplus */
-import { ITEMS_PER_PAGE, BASE_PATH } from '../constants/globalConstants';
+/* eslint-disable no-param-reassign */
+import { ITEMS_PER_PAGE, BASE_PATH, STORE_NAME } from '../constants/globalConstants';
 
 export function checkItemInStorage(storageName, item) {
     const storageArray = typeof localStorage.getItem(storageName) === 'string' ? JSON.parse(localStorage.getItem(storageName)) : [];
@@ -56,6 +56,10 @@ export function requestServer(query) {
             }
         };
     });
+}
+
+export function saveFavorite(favorites) {
+    localStorage.setItem(STORE_NAME, favorites);
 }
 
 export function getArrayMash(targetMash) {

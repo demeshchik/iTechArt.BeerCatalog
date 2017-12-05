@@ -1,11 +1,18 @@
-/* eslint-disable react/forbid-prop-types,react/no-array-index-key,react/jsx-indent-props*/
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 import TileContainer from '../TileContainer/TileContainer';
 
-export default class Page extends React.Component {
+export default class CatalogPage extends React.Component {
+	static get propTypes(){
+		return {
+			data: PropTypes.array.isRequired,
+			loadData: PropTypes.func.isRequired,
+			hasMore: PropTypes.bool.isRequired,
+		}
+	};
+
 	get Tiles() {
 		const data = [...this.props.data];
 		const tiles = [];
@@ -15,7 +22,7 @@ export default class Page extends React.Component {
 				tiles.push(<TileContainer
                     key={index}
                     isFavorite={item.isFavorite}
-				    tile={item.beer}
+					tile={item.beer}
 				/>);
 			});
 		}
@@ -37,9 +44,3 @@ export default class Page extends React.Component {
 		)
     }
 }
-
-Page.propTypes = {
-	data: PropTypes.array.isRequired,
-	loadData: PropTypes.func.isRequired,
-	hasMore: PropTypes.bool.isRequired,
-};

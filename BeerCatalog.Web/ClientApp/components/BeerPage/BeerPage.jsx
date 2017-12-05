@@ -1,5 +1,4 @@
-﻿/* eslint-disable react/forbid-prop-types,react/jsx-indent-props,indent,react/no-array-index-key,class-methods-use-this */
-import React from 'react';
+﻿import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,7 +17,6 @@ import { manageFavorites } from '../../actions/favoritesActions';
 import '../../grid.css';
 import './BeerPage.css';
 
-
 class BeerPage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -28,6 +26,15 @@ class BeerPage extends React.Component {
 		};
 
 		this.changeFavoriteValue = this.changeFavoriteValue.bind(this);
+	}
+
+	static get propTypes() {
+		return {
+			beerActions: PropTypes.func.isRequired,
+			match: PropTypes.object.isRequired,
+			selectedBeer: PropTypes.object.isRequired,
+			manageFavorites: PropTypes.func.isRequired,
+		}
 	}
 
 	componentWillMount() {
@@ -203,10 +210,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BeerPage);
-
-BeerPage.propTypes = {
-	beerActions: PropTypes.func.isRequired,
-	match: PropTypes.object.isRequired,
-	selectedBeer: PropTypes.object.isRequired,
-	manageFavorites: PropTypes.func.isRequired,
-};

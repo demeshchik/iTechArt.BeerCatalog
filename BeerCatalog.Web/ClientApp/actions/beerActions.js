@@ -1,7 +1,7 @@
 import { ITEMS_PER_PAGE } from '../constants/globalConstants';
 import * as Constants from '../constants/reduxConstants';
 
-import { getNewBeers } from '../repos/beerRepository';
+import { getNewBeers } from '../repositories/beerRepository';
 
 function clearStore(dispatch) {
     dispatch({

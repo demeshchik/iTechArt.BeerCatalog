@@ -1,10 +1,10 @@
-/* eslint-disable no-undef,jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Sidebar.css';
 
-export default class Navbar extends React.PureComponent {
+export default class Sidebar extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {

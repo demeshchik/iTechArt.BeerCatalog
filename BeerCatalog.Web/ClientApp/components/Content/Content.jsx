@@ -1,17 +1,36 @@
-/* eslint-disable react/no-array-index-key,react/forbid-prop-types,react/jsx-indent-props,react/jsx-closing-tag-location */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Content.css';
 
 export default class Content extends React.Component {
+    static get propTypes() {
+        return {
+			header: PropTypes.string,
+			data: PropTypes.arrayOf(PropTypes.string),
+			children: PropTypes.array,
+			containerStyle: PropTypes.string,
+			headerStyle: PropTypes.string,
+			elementStyle: PropTypes.string,
+        }
+    }
+    static get defaultProps() {
+        return {
+			header: '',
+			data: [],
+			children: [],
+			containerStyle: '',
+			headerStyle: 'content__header',
+			elementStyle: 'content__item',
+        }
+    }
     get Content() {
         const array = [];
 
         this.props.data.forEach((item, index) => {
             array.push(<div
                 key={index}
-					 className={this.props.elementStyle}
+                className={this.props.elementStyle}
             >
                 {item}
             </div>);
@@ -32,21 +51,3 @@ export default class Content extends React.Component {
         );
     }
 }
-
-Content.defaultProps = {
-    header: '',
-    data: [],
-    children: [],
-    containerStyle: '',
-    headerStyle: 'content__header',
-    elementStyle: 'content__item',
-};
-
-Content.propTypes = {
-    header: PropTypes.string,
-    data: PropTypes.arrayOf(PropTypes.string),
-    children: PropTypes.array,
-    containerStyle: PropTypes.string,
-    headerStyle: PropTypes.string,
-    elementStyle: PropTypes.string,
-};

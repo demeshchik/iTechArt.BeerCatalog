@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-indent-props,jsx-a11y/anchor-is-valid,react/forbid-prop-types */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -18,6 +18,14 @@ class TileContainer extends React.PureComponent {
 		super(props);
 
 		this.favoriteAction = this.favoriteAction.bind(this);
+	}
+
+	static get propTypes() {
+		return {
+			isFavorite: PropTypes.bool.isRequired,
+			manageFavorite: PropTypes.func.isRequired,
+			tile: PropTypes.object.isRequired,
+		}
 	}
 
     favoriteAction() {
@@ -54,9 +62,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(TileContainer);
-
-TileContainer.propTypes = {
-	isFavorite: PropTypes.bool.isRequired,
-    manageFavorite: PropTypes.func.isRequired,
-	tile: PropTypes.object.isRequired,
-};

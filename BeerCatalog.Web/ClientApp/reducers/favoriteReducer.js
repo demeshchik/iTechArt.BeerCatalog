@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import * as Constants from '../constants/reduxConstants';
 
 const remove = require('lodash.remove');
@@ -28,7 +27,9 @@ export default function reducer(state = initialState, action) {
     case Constants.MANAGE_FAVORITE:
         const storeFaves = [...state.data];
 
-        action.data.flag ? '' : remove(storeFaves, item => item.beer.id === action.data.id);
+        if (!action.data.flag) {
+            remove(storeFaves, item => item.beer.id === action.data.id);
+        }
 
         return { ...state, data: storeFaves };
     default:

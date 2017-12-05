@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-expressions */
 import { ITEMS_PER_PAGE } from '../constants/globalConstants';
 import * as Constants from '../constants/reduxConstants';
 
 import { idCombinator } from '../utils/utils';
-import { getNewBeers } from '../repos/beerRepository';
-import * as favoritesRepository from '../repos/favoritesRepository';
+import { getNewBeers } from '../repositories/beerRepository';
+import * as favoritesRepository from '../repositories/favoritesRepository';
 
 export function loadFavorites(page) {
     return (dispatch) => {

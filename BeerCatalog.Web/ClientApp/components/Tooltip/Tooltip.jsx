@@ -3,23 +3,20 @@ import PropTypes from 'prop-types';
 
 import './Tooltip.css';
 
-export default class Tooltip extends React.Component {
-	render() {
-		return (
-			<span className={"tooltip__container " + this.props.class}>
-				<i className="material-icons tooltip__icon">{this.props.text}</i>
-				<span className="tooltip__body">{this.props.tooltip}</span>
-			</span>
-		)
-	}
-}
+const Tooltip = props =>
+    (<span className={`tooltip__container ${props.class}`}>
+        <i className="material-icons tooltip__icon">{props.text}</i>
+        <span className="tooltip__body">{props.tooltip}</span>
+    </span>);
 
 Tooltip.defaultProps = {
-	class: '',
+    class: '',
 };
 
 Tooltip.propTypes = {
-	text: PropTypes.string.isRequired,
-	tooltip: PropTypes.string.isRequired,
-	class: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    tooltip: PropTypes.string.isRequired,
+    class: PropTypes.string,
 };
+
+export default Tooltip;

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,6 +6,21 @@ export default class InfiniteScroll extends React.Component {
 		super(props);
 
 		this.onScrollHandler = this.onScrollHandler.bind(this);
+	}
+
+	static get propTypes() {
+		return {
+			initialLoading: PropTypes.bool,
+			hasMore: PropTypes.bool,
+			children: PropTypes.arrayOf(PropTypes.element).isRequired,
+			loadData: PropTypes.func.isRequired,
+		}
+	}
+	static get defaultProps() {
+		return {
+			initialLoading: true,
+			hasMore: true,
+		}
 	}
 
 	componentWillMount() {
@@ -41,15 +55,3 @@ export default class InfiniteScroll extends React.Component {
 		);
 	}
 }
-
-InfiniteScroll.defaultProps = {
-	initialLoading: true,
-	hasMore: true,
-};
-
-InfiniteScroll.propTypes = {
-	initialLoading: PropTypes.bool,
-	hasMore: PropTypes.bool,
-	children: PropTypes.arrayOf(PropTypes.element).isRequired,
-	loadData: PropTypes.func.isRequired,
-};

@@ -8,6 +8,13 @@
     "react/jsx-indent": 0,
     "eol-last": 0,
     "max-len": 0,
-    "no-undef": 0
+    "no-undef": 0,
+    "no-unused-expressions": 0,
+    "no-plusplus": 0,
+    "import/prefer-default-export": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-closing-tag-location": 0,
+    "react/jsx-indent-props": 0,
+    "react/no-array-index-key": 0
   }
 }

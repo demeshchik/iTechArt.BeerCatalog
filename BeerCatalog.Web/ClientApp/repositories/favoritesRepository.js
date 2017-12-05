@@ -1,4 +1,4 @@
-import { STORE_NAME } from '../constants/globalConstants';
+import { saveFavorite } from '../utils/utils';
 
 export function getFavorites() {
     return typeof localStorage.getItem(STORE_NAME) !== 'string' ? [] : JSON.parse(localStorage.getItem(STORE_NAME));
@@ -6,9 +6,10 @@ export function getFavorites() {
 
 export function addFavorite(item) {
     const favorites = getFavorites();
+
     favorites.push(item);
 
-    localStorage.setItem(STORE_NAME, JSON.stringify(favorites));
+    saveFavorite(JSON.stringify(favorites));
 }
 
 export function removeFavorite(item) {
@@ -16,5 +17,5 @@ export function removeFavorite(item) {
 
     favorites.splice(favorites.indexOf(item), 1);
 
-    localStorage.setItem(STORE_NAME, JSON.stringify(favorites));
+    saveFavorite(JSON.stringify(favorites));
 }

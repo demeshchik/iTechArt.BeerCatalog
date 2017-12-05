@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-indent-props */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,6 +11,30 @@ export default class Slider extends React.PureComponent {
 		};
 
 		this.handleChange = this.handleChange.bind(this);
+	}
+
+	static get propTypes() {
+		return {
+			onChange: PropTypes.func.isRequired,
+			containerStyle: PropTypes.string,
+			nameStyle: PropTypes.string,
+			sliderStyle: PropTypes.string,
+			name: PropTypes.string.isRequired,
+			id: PropTypes.string.isRequired,
+			min: PropTypes.string,
+			max: PropTypes.string,
+			step: PropTypes.string,
+		}
+	}
+	static get defaultProps() {
+		return {
+			containerStyle: '',
+			nameStyle: '',
+			sliderStyle: '',
+			min: 1,
+			max: 10,
+			step: 1,
+		}
 	}
 
 	handleChange(event) {
@@ -41,24 +64,3 @@ export default class Slider extends React.PureComponent {
 		);
 	}
 }
-
-Slider.defaultProps = {
-    containerStyle: '',
-    nameStyle: '',
-    sliderStyle: '',
-	min: 1,
-	max: 10,
-	step: 1,
-};
-
-Slider.propTypes = {
-	onChange: PropTypes.func.isRequired,
-    containerStyle: PropTypes.string,
-    nameStyle: PropTypes.string,
-    sliderStyle: PropTypes.string,
-	name: PropTypes.string.isRequired,
-	id: PropTypes.string.isRequired,
-	min: PropTypes.string,
-	max: PropTypes.string,
-	step: PropTypes.string,
-};

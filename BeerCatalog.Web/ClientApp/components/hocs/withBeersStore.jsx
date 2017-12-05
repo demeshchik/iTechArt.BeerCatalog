@@ -1,13 +1,13 @@
-﻿/* eslint-disable no-unused-vars,react/jsx-indent-props,react/no-array-index-key,import/prefer-default-export,react/prop-types,no-plusplus */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Search from '../components/Search/Search';
+import Search from '../Search/Search';
 
-import { loadBeers } from '../actions/beerActions';
+import { loadBeers } from '../../actions/beerActions';
 
-import '../grid.css';
+import '../../grid.css';
 import './beersPage.css';
 
 export function withBeersStore(WrappedComponent) {
@@ -15,13 +15,21 @@ export function withBeersStore(WrappedComponent) {
         constructor(props) {
             super(props);
 
-			this.data = {
-				page: 0,
-				queryPath: '',
-			};
+            this.data = {
+                page: 0,
+                queryPath: '',
+            };
 
-			this.searchHandler = this.searchHandler.bind(this);
+            this.searchHandler = this.searchHandler.bind(this);
             this.loadNewData = this.loadNewData.bind(this);
+        }
+
+        static get propTypes() {
+            return {
+                beerActions: PropTypes.func.isRequired,
+                beers: PropTypes.object.isRequired,
+                error: PropTypes.string.isRequired,
+            }
         }
 
         loadNewData() {
@@ -29,13 +37,13 @@ export function withBeersStore(WrappedComponent) {
             this.props.beerActions(this.data.queryPath, this.data.page);
         }
 
-		searchHandler(query) {
+        searchHandler(query) {
             this.data = {
                 queryPath: query,
-				page: 1,
-			};
-			this.props.beerActions(this.data.queryPath, this.data.page);
-		}
+                page: 1,
+            };
+            this.props.beerActions(this.data.queryPath, this.data.page);
+        }
 
         render() {
             const newProps = {
@@ -44,10 +52,10 @@ export function withBeersStore(WrappedComponent) {
                 loadData: this.loadNewData,
             };
 
-			return (
-				this.props.error ?
-                    <span>{this.props.error}</span> :
-                    <div className="cl-xl-offset-2 cl-lg-offset-1 cl-xl-6 cl-lg-8 cl-sm-10">
+            return (
+                this.props.error
+                    ? <span>{this.props.error}</span>
+                    : <div className="cl-xl-offset-2 cl-lg-offset-1 cl-xl-6 cl-lg-8 cl-sm-10">
                         <div className="container">
                             <section className="catalog__search container">
                                 <Search onSearch={this.searchHandler} />
@@ -60,20 +68,20 @@ export function withBeersStore(WrappedComponent) {
                             </section>
                         </div>
                     </div>
-			);
+            );
         }
     }
 
     function mapStateToProps(state) {
         return {
-			beers: state.beers,
-			error: state.error,
+            beers: state.beers,
+            error: state.error,
         };
     }
 
     function mapDispatchToProps(dispatch) {
         return {
-			beerActions: bindActionCreators(loadBeers, dispatch),
+            beerActions: bindActionCreators(loadBeers, dispatch),
         };
     }
 

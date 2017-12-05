@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-indent-props */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,8 +7,6 @@ import { changeValueInQuery } from '../../utils/utils';
 
 import '../../grid.css';
 import './Search.css';
-
-//  TODO: Add access to store
 
 export default class Search extends React.PureComponent {
 	constructor(props) {
@@ -29,6 +26,12 @@ export default class Search extends React.PureComponent {
 		this.onSliderHandler = this.onSliderHandler.bind(this);
 	}
 
+	static get propTypes() {
+		return {
+			onSearch: PropTypes.func.isRequired,
+		}
+	}
+
 	onSearchHandler(event) {
 		if (event.key === 'Enter' || event.button === 0) {
 			this.setState({
@@ -43,12 +46,12 @@ export default class Search extends React.PureComponent {
 		this.props.onSearch(this.Query + this.query.slidersQuery);
 	}
 
-	get Query() {
-		return this.query.beer_name === '' ? '' : `&beer_name=${this.query.beer_name}`;
-	}
-
 	onQueryHandler(event) {
 		this.query.beer_name = event.target.value;
+	}
+
+	get Query() {
+		return this.query.beer_name === '' ? '' : `&beer_name=${this.query.beer_name}`;
 	}
 
 	render() {
@@ -99,7 +102,3 @@ export default class Search extends React.PureComponent {
 		);
 	}
 }
-
-Search.propTypes = {
-	onSearch: PropTypes.func.isRequired,
-};

@@ -1,21 +1,27 @@
-/* eslint-disable no-unused-vars,react/jsx-indent-props,react/prop-types,import/prefer-default-export,no-underscore-dangle,no-plusplus */
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as favoritesActions from '../actions/favoritesActions';
+import * as favoritesActions from '../../actions/favoritesActions';
 
-import '../grid.css';
+import '../../grid.css';
 
 export function withFavoritesStore(WrappedComponent) {
     class HOCWrappedComponent extends React.Component {
-		constructor(props) {
-			super(props);
+        constructor(props) {
+            super(props);
 
-			this.page = 0;
+            this.page = 0;
 
-			this.loadNewData = this.loadNewData.bind(this);
-		}
+            this.loadNewData = this.loadNewData.bind(this);
+        }
+
+        static get propTypes() {
+            return {
+                favoriteActions: PropTypes.object.isRequired,
+                favorites: PropTypes.object.isRequired,
+            };
+        }
 
         loadNewData() {
             this.page++;
