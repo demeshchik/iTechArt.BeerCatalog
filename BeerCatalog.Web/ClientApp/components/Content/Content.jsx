@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import './Content.css';
 
-export default class Content extends React.Component {
+export default class Content extends React.PureComponent {
     static get propTypes() {
         return {
-			header: PropTypes.string,
+			header: PropTypes.any,
 			data: PropTypes.arrayOf(PropTypes.string),
 			children: PropTypes.array,
 			containerStyle: PropTypes.string,
@@ -24,6 +24,7 @@ export default class Content extends React.Component {
 			elementStyle: 'content__item',
         }
     }
+
     get Content() {
         const array = [];
 
@@ -42,9 +43,9 @@ export default class Content extends React.Component {
     render() {
         return (
             <div className={`content ${this.props.containerStyle}`}>
-                {this.props.header.length !== 0 ?
-                    <h6 className={this.props.headerStyle}>{this.props.header}</h6> :
-                    ''
+                {this.props.header.length !== 0
+					? <h6 className={this.props.headerStyle}>{this.props.header}</h6>
+					: ''
                 }
                 {this.Content}
             </div>

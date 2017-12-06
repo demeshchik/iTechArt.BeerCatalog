@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
-import TileContainer from '../TileContainer/TileContainer';
+import Tile from '../Tile/Tile';
 
 export default class CatalogPage extends React.Component {
 	static get propTypes(){
 		return {
+			manageFavorite: PropTypes.func.isRequired,
 			data: PropTypes.array.isRequired,
 			loadData: PropTypes.func.isRequired,
 			hasMore: PropTypes.bool.isRequired,
@@ -19,8 +20,9 @@ export default class CatalogPage extends React.Component {
 
 		if (data && data.length > 0) {
 			data.forEach((item, index) => {
-				tiles.push(<TileContainer
+				tiles.push(<Tile
                     key={index}
+					manageFavorite={this.props.manageFavorite}
                     isFavorite={item.isFavorite}
 					tile={item.beer}
 				/>);

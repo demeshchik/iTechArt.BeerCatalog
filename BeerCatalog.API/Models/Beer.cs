@@ -13,9 +13,9 @@ namespace BeerCatalog.API.Models
 
         [JsonProperty("image_url")]
         public string Image { get; set; }
-        public double Abv { get; set; }
-        public double Ibu { get; set; }
-        public double Ebc { get; set; }
+        public double? Abv { get; set; }
+        public double? Ibu { get; set; }
+        public double? Ebc { get; set; }
         public ExpandoObject Method { get; set; }
         public ExpandoObject Ingredients { get; set; }
 

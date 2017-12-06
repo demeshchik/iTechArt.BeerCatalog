@@ -1,3 +1,4 @@
+import { STORE_NAME } from '../constants/globalConstants';
 import { saveFavorite } from '../utils/utils';
 
 export function getFavorites() {

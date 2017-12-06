@@ -22,7 +22,7 @@ export function changeValueInQuery(queryString, paramName, newValue) {
         paramsString += item;
     });
 
-    const finalString = checker ? paramsString : `${paramsString}&${paramName}_gt=${newValue}`;
+    const finalString = checker ? paramsString : `${paramsString}&${paramName}=${newValue}`;
     return finalString.substring(1);
 }
 
@@ -73,7 +73,7 @@ export function getArrayMash(targetMash) {
     return array;
 }
 
-export function getArrayIngredients(targetIngredients) {
+export function getMappedIngredients(targetIngredients) {
     const generatedObject = {};
 
     Object.keys(targetIngredients).forEach((key) => {
@@ -85,7 +85,10 @@ export function getArrayIngredients(targetIngredients) {
             const array = [];
 
             ingredient.forEach((item) => {
-                const mash = `${item.name} - ${item.amount.value} ${item.amount.unit}`;
+                let mash = `${item.name} - ${item.amount.value} ${item.amount.unit}`;
+                if ('add' in item) {
+                    mash += ` add at ${item.add}`;
+                }
                 array.push(mash);
             });
 

@@ -1,6 +1,7 @@
 {
   "extends": "airbnb",
   "rules": {
+    "class-methods-use-this": 0,
     "indent": ["error", 4],
     "no-tabs": 0,
     "no-case-declarations": 0,
@@ -11,7 +12,10 @@
     "no-undef": 0,
     "no-unused-expressions": 0,
     "no-plusplus": 0,
+    "import/first": 0,
+    "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-closing-tag-location": 0,
     "react/jsx-indent-props": 0,

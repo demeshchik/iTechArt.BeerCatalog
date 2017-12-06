@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -22,7 +21,7 @@ function renderApp() {
 				<BrowserRouter>
 					<App />
 				</BrowserRouter>
-	        </Provider>
+			</Provider>
         </AppContainer>,
         document.getElementById('react-app'),
     );

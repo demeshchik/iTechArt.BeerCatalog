@@ -5,7 +5,7 @@ import Slider from '../Slider/Slider';
 
 import { changeValueInQuery } from '../../utils/utils';
 
-import '../../grid.css';
+import 'AppRoot/grid.css';
 import './Search.css';
 
 export default class Search extends React.PureComponent {
@@ -51,7 +51,7 @@ export default class Search extends React.PureComponent {
 	}
 
 	get Query() {
-		return this.query.beer_name === '' ? '' : `&beer_name=${this.query.beer_name}`;
+		return this.query.beer_name === '' ? '' : `&name=${this.query.beer_name}`;
 	}
 
 	render() {

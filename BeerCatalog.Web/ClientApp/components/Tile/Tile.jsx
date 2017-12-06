@@ -1,19 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
-import Button from '../Button/Button';
-
-import { manageFavorites } from '../../actions/favoritesActions';
-
-import '../../grid.css';
-import '../../main.css';
+import 'AppRoot/grid.css';
+import 'AppRoot/main.css';
 import './Tile.css';
 
-class TileContainer extends React.PureComponent {
+export default class Tile extends React.PureComponent {
 	constructor(props) {
 		super(props);
 
@@ -43,22 +37,10 @@ class TileContainer extends React.PureComponent {
 					<span className="tile__tagline">{this.props.tile.tagline}</span>
 					<div className="tile__buttons">
 						<Link className="btn btn-white btn-simple btn-app" to={"/beers/" + this.props.tile.id}>Open</Link>
-						<Button
-                            onClick={this.favoriteAction}
-							class="btn-white btn-simple btn-app"
-                            title={this.props.isFavorite ? 'remove favorite' : 'favorite'}
-						/>
+						<button className="btn btn-white btn-simple btn-app" onClick={this.favoriteAction}>{this.props.isFavorite ? 'remove favorite' : 'favorite'}</button>
 					</div>
 				</div>
 			</div>
 		);
 	}
 }
-
-function mapDispatchToProps(dispatch) {
-	return {
-        manageFavorite: bindActionCreators(manageFavorites, dispatch),
-	};
-}
-
-export default connect(null, mapDispatchToProps)(TileContainer);

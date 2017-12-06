@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as favoritesActions from '../../actions/favoritesActions';
 
-import '../../grid.css';
+import 'AppRoot/grid.css';
 
 export function withFavoritesStore(WrappedComponent) {
     class HOCWrappedComponent extends React.Component {
@@ -30,6 +31,7 @@ export function withFavoritesStore(WrappedComponent) {
 
         render() {
             const newProps = {
+				manageFavorite: this.props.favoriteActions.manageFavorites,
                 data: this.props.favorites.data,
                 hasMore: this.props.favorites.hasMore,
                 loadData: this.loadNewData,

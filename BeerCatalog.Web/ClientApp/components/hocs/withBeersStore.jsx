@@ -6,9 +6,9 @@ import { bindActionCreators } from 'redux';
 import Search from '../Search/Search';
 
 import { loadBeers } from '../../actions/beerActions';
+import { manageFavorites } from '../../actions/favoritesActions';
 
-import '../../grid.css';
-import './beersPage.css';
+import 'AppRoot/grid.css';
 
 export function withBeersStore(WrappedComponent) {
     class HOCWrappedComponent extends React.Component {
@@ -26,6 +26,7 @@ export function withBeersStore(WrappedComponent) {
 
         static get propTypes() {
             return {
+				favoriteActions: PropTypes.func.isRequired,
                 beerActions: PropTypes.func.isRequired,
                 beers: PropTypes.object.isRequired,
                 error: PropTypes.string.isRequired,
@@ -50,6 +51,10 @@ export function withBeersStore(WrappedComponent) {
                 data: this.props.beers.data,
                 hasMore: this.props.beers.hasMore,
                 loadData: this.loadNewData,
+                manageFavorite: this.props.favoriteActions
+            };
+            const styles = {
+                margin: '70px auto 40px'
             };
 
             return (
@@ -57,7 +62,7 @@ export function withBeersStore(WrappedComponent) {
                     ? <span>{this.props.error}</span>
                     : <div className="cl-xl-offset-2 cl-lg-offset-1 cl-xl-6 cl-lg-8 cl-sm-10">
                         <div className="container">
-                            <section className="catalog__search container">
+                            <section style={styles} className="container">
                                 <Search onSearch={this.searchHandler} />
                             </section>
                         </div>
@@ -82,6 +87,7 @@ export function withBeersStore(WrappedComponent) {
     function mapDispatchToProps(dispatch) {
         return {
             beerActions: bindActionCreators(loadBeers, dispatch),
+            favoriteActions: bindActionCreators(manageFavorites, dispatch),
         };
     }
 

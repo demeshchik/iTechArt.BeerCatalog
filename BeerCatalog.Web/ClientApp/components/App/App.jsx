@@ -2,18 +2,18 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Header from '../Header/Header';
-import Page from '../CatalogPage/CatalogPage';
+import CatalogPage from '../CatalogPage/CatalogPage';
 import BeerPage from '../BeerPage/BeerPage';
 
 import { withFavoritesStore } from '../hocs/withFavoritesStore';
 import { withBeersStore } from '../hocs/withBeersStore';
 
-import '../../grid.css';
-import '../../main.css';
+import 'AppRoot/grid.css';
+import 'AppRoot/main.css';
 
 const App = () => {
-    const FavoritesPage = withFavoritesStore(Page);
-    const BeersPage = withBeersStore(Page);
+    const FavoritesPage = withFavoritesStore(CatalogPage);
+    const BeersPage = withBeersStore(CatalogPage);
 
     return (
 		<div className="app">

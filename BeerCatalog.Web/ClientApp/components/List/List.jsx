@@ -1,22 +1,48 @@
 import React from 'react';
 import PropType from 'prop-types';
 
+import ListItem from '../ListItem/ListItem';
+
 import './List.css';
 
-const List = (props) => {
-	return (
-		<ul className={'list ' + props.class}>
-			{props.children}
-		</ul>
-	)
-};
+export default class List extends React.PureComponent {
+    static get propTypes() {
+        return {
+            class: PropType.string,
+            name: PropType.string,
+            data: PropType.object.isRequired,
+        };
+    }
+    static get defaultProps() {
+        return {
+            class: '',
+            name: '',
+        };
+    }
 
-List.defaultProps = {
-	class: '',
-};
-List.propTypes = {
-	class: PropType.string,
-	children: PropType.arrayOf(PropType.element).isRequired,
-};
+    get Nodes() {
+        const array = [];
+        const targetObject = this.props.data;
+        const component = this.props.name;
 
-export default List;
+        Object.keys(targetObject).forEach((key) => {
+            const content = <ListItem
+                                key={`${component}-component-${key}`}
+                                header={key}
+                                type={component}
+                                data={targetObject[key]} />;
+
+            array.push(content);
+        });
+
+        return array;
+    }
+
+    render() {
+        return (
+            <ul className={`list ${this.props.class}`}>
+                {this.Nodes}
+            </ul>
+        );
+    }
+}

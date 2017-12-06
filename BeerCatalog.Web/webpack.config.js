@@ -9,7 +9,12 @@ module.exports = (env) => {
     return [{
         stats: { modules: false },
         entry: { 'main': './ClientApp/main.jsx' },
-        resolve: { extensions: ['.js', '.jsx'] },
+        resolve: {
+            extensions: ['.js', '.jsx'],
+            alias: {
+                AppRoot: path.resolve(__dirname, './ClientApp'),
+            }
+        },
         output: {
             path: path.join(__dirname, bundleOutputDir),
             filename: '[name].js',

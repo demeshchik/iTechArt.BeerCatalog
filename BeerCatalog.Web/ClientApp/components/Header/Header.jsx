@@ -1,7 +1,8 @@
+/* eslint-disable import/first */
 import React from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 
-import '../../grid.css';
+import 'AppRoot/grid.css';
 import './Header.css';
 
 const Header = () => {

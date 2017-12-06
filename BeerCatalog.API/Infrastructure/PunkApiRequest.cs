@@ -1,26 +1,36 @@
 ﻿using BeerCatalog.API.Models;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
-//TODO: change request URI
 
 namespace BeerCatalog.API.Infrastructure
 {
     public static class PunkApiRequest
     {
-        public static List<Beer> GetBeers(int page, int per_page)
+        private static IConfigurationRoot configuration;
+        static PunkApiRequest()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+            configuration = builder.Build();
+        }
+
+        public static List<Beer> GetBeers(string queryString)
         {
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://46270a70-d6f5-4e99-b87d-d101e38ccdaa.mock.pstmn.io");
+                string uri = configuration.GetValue<string>("BaseUri");
+                client.BaseAddress = new Uri(uri);
                 MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
                 client.DefaultRequestHeaders.Accept.Add(contentType);
 
-                HttpResponseMessage responseMessage = client.GetAsync($"/v2/beers/?per_page={per_page}&page={page}").Result;
+                HttpResponseMessage responseMessage = client.GetAsync($"/v2/beers/?{queryString}").Result;
 
                 if (!responseMessage.IsSuccessStatusCode && responseMessage.StatusCode != HttpStatusCode.NotModified)
                 {

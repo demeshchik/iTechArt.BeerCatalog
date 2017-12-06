@@ -1,19 +1,65 @@
+/* eslint-disable prefer-destructuring */
 import React from 'react'
 import PropTypes from 'prop-types';
 
+import Content from '../Content/Content';
+import Tooltip from '../Tooltip/Tooltip';
+
 import './ListItem.css';
 
-const ListItem = (props) => (
-	<li className={props.class}>{props.children}</li>
-);
+export default class ListItem extends React.PureComponent{
+	static get propTypes() {
+		return {
+			class: PropTypes.string,
+			type: PropTypes.string,
+			header: PropTypes.string,
+			data: PropTypes.any.isRequired,
+		}
+	}
+	static get defaultProps() {
+		return  {
+			type: '',
+			header: '',
+			class: 'list-item',
+		}
+	}
 
-ListItem.defaultProps = {
-	class: 'list-item',
-};
+	get ItemNode() {
+		const type = this.props.type;
+		switch (type) {
+			case 'properties':
+				return this.getPrettyProperty();
+			case 'food':
+				return <Content header={this.props.data} />;
+			default:
+				return <Content header={this.props.header} data={this.props.data} />;
+		}
+	}
 
-ListItem.propTypes = {
-	class: PropTypes.string,
-	children: PropTypes.object.isRequired,
-};
+	getPrettyProperty() {
+		const { value, tooltip } = this.props.data;
+		const styles = {
+			textTransform: 'uppercase',
+		};
 
-export default ListItem;
+		return (
+				<Content containerStyle="property">
+					<span style={styles}>{this.props.header}</span>
+					<Tooltip
+						class="property__tooltip"
+						text="info_outline"
+						tooltip={tooltip}
+					/>
+					<span className="label label-default property__value">{value}</span>
+				</Content>
+		);
+	}
+
+	render() {
+		return (
+			<li className={this.props.class}>
+				{this.ItemNode}
+			</li>
+		)
+	}
+}

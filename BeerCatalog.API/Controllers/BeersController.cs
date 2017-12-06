@@ -1,5 +1,7 @@
 ﻿using BeerCatalog.API.Infrastructure;
+using BeerCatalog.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BeerCatalog.API.Controllers
 {
@@ -8,16 +10,21 @@ namespace BeerCatalog.API.Controllers
     public class BeersController : Controller
     {
         [HttpGet]
-        public IActionResult Get([FromQuery]int page, int per_page)
+        public IActionResult Get([FromQuery]Request request)
         { 
             try
             {
-                var beers = PunkApiRequest.GetBeers(page, per_page);
+                string queryString = request.GetQueryString();
+                var beers = PunkApiRequest.GetBeers(queryString);
                 return Json(beers);
             }
             catch (RequestApiException exception)
             {
                 return StatusCode((int)exception.StatusCode, exception.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
     }
