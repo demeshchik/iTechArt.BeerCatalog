@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Search from '../Search/Search';
+import Search from 'Components/Search/Search';
 
-import { loadBeers } from '../../actions/beerActions';
-import { manageFavorites } from '../../actions/favoritesActions';
+import { loadBeers } from 'AppRoot/actions/beerActions';
+import { manageFavorites } from 'AppRoot/actions/favoritesActions';
 
 import 'AppRoot/grid.css';
 

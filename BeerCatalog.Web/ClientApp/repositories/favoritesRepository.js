@@ -1,5 +1,5 @@
-import { STORE_NAME } from '../constants/globalConstants';
-import { saveFavorite } from '../utils/utils';
+import { STORE_NAME } from 'AppRoot/constants/globalConstants';
+import { saveFavorite } from 'AppRoot/utils/utils';
 
 export function getFavorites() {
     return typeof localStorage.getItem(STORE_NAME) !== 'string' ? [] : JSON.parse(localStorage.getItem(STORE_NAME));

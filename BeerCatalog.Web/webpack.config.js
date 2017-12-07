@@ -13,6 +13,7 @@ module.exports = (env) => {
             extensions: ['.js', '.jsx'],
             alias: {
                 AppRoot: path.resolve(__dirname, './ClientApp'),
+                Components: path.resolve(__dirname, './ClientApp/components'),
             }
         },
         output: {

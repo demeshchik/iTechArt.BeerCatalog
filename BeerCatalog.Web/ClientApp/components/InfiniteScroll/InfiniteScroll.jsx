@@ -39,12 +39,16 @@ export default class InfiniteScroll extends React.Component {
 
 	onScrollHandler() {
 		if (this.props.hasMore) {
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+			if (InfiniteScroll.isContinueLoading) {
 				this.props.loadData();
 			}
 		} else {
 			window.removeEventListener('scroll', this.onScrollHandler);
 		}
+	}
+
+	static get isContinueLoading() {
+		return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
 	}
 
 	render() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
-import Tile from '../Tile/Tile';
+import InfiniteScroll from 'Components/InfiniteScroll/InfiniteScroll';
+import Tile from 'Components/Tile/Tile';
 
 export default class CatalogPage extends React.Component {
 	static get propTypes(){

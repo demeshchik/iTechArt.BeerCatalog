@@ -1,6 +1,6 @@
-import { ITEMS_PER_PAGE } from '../constants/globalConstants';
+import { ITEMS_PER_PAGE } from 'AppRoot/constants/globalConstants';
 
-import { requestServer } from '../utils/utils';
+import { requestServer } from 'AppRoot/utils/utils';
 
 export function getNewBeers(query, page) {
     return new Promise((resolve, reject) => {

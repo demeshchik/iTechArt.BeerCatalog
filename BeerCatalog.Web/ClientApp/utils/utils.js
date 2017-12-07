@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { ITEMS_PER_PAGE, BASE_PATH, STORE_NAME } from '../constants/globalConstants';
+import { ITEMS_PER_PAGE, BASE_PATH, STORE_NAME } from 'AppRoot/constants/globalConstants';
 
 export function checkItemInStorage(storageName, item) {
     const storageArray = typeof localStorage.getItem(storageName) === 'string' ? JSON.parse(localStorage.getItem(storageName)) : [];

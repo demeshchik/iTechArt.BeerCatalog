@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectBeer } from '../../actions/beerActions';
-import { manageFavorites } from '../../actions/favoritesActions';
+import { selectBeer } from 'AppRoot/actions/beerActions';
+import { manageFavorites } from 'AppRoot/actions/favoritesActions';
 
 import Brewing from './components/Brewing';
 import Features from './components/Features';
 
-import Mappers from '../../utils/mappers';
+import Mappers from 'AppRoot/utils/mappers';
 
 import 'AppRoot/grid.css';
 import './BeerPage.css';

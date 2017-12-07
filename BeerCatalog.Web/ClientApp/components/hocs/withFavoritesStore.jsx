@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as favoritesActions from '../../actions/favoritesActions';
+import * as favoritesActions from 'AppRoot/actions/favoritesActions';
 
 import 'AppRoot/grid.css';
 

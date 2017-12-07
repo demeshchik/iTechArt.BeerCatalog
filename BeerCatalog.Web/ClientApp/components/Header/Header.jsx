@@ -1,6 +1,5 @@
-/* eslint-disable import/first */
 import React from 'react';
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from 'Components/Sidebar/Sidebar';
 
 import 'AppRoot/grid.css';
 import './Header.css';

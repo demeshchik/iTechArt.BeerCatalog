@@ -1,7 +1,7 @@
-import * as Constants from '../constants/reduxConstants';
-import { STORE_NAME } from '../constants/globalConstants';
+import * as Constants from 'AppRoot/constants/reduxConstants';
+import { STORE_NAME } from 'AppRoot/constants/globalConstants';
 
-import { checkItemInStorage } from '../utils/utils';
+import { checkItemInStorage } from 'AppRoot/utils/utils';
 
 const initialState = {
     data: [],
