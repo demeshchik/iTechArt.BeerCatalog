@@ -1,4 +1,4 @@
-﻿using BeerCatalog.API.Models;
+﻿using BeerCatalog.Web.Models;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace BeerCatalog.API.Infrastructure
+namespace BeerCatalog.Web.Infrastructure
 {
     public static class PunkApiRequest
     {

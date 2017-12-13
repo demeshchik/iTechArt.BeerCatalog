@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerCatalog.Web", "BeerCatalog.WEB\BeerCatalog.Web.csproj", "{52ED3E4B-664F-4336-B301-E494252778FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCatalog.API", "BeerCatalog.API\BeerCatalog.API.csproj", "{35E88EE7-28EE-4043-A211-555CF726A6C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCatalog.Data", "BeerCatalog.Data\BeerCatalog.Data.csproj", "{8C333216-25B1-4293-9266-4C7615043C78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCatalog.Repositories", "BeerCatalog.Repositories\BeerCatalog.Repositories.csproj", "{3B94AD1D-265A-479C-AE29-952EBD94878A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{52ED3E4B-664F-4336-B301-E494252778FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52ED3E4B-664F-4336-B301-E494252778FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52ED3E4B-664F-4336-B301-E494252778FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35E88EE7-28EE-4043-A211-555CF726A6C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35E88EE7-28EE-4043-A211-555CF726A6C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35E88EE7-28EE-4043-A211-555CF726A6C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35E88EE7-28EE-4043-A211-555CF726A6C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C333216-25B1-4293-9266-4C7615043C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C333216-25B1-4293-9266-4C7615043C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C333216-25B1-4293-9266-4C7615043C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C333216-25B1-4293-9266-4C7615043C78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B94AD1D-265A-479C-AE29-952EBD94878A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B94AD1D-265A-479C-AE29-952EBD94878A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B94AD1D-265A-479C-AE29-952EBD94878A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B94AD1D-265A-479C-AE29-952EBD94878A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

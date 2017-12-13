@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace BeerCatalog.API.Models
+namespace BeerCatalog.Web.Models
 {
     public class Request
     {
@@ -18,7 +18,7 @@ namespace BeerCatalog.API.Models
             string queryString = "";
             Type type = GetType();
             PropertyInfo[] pi = type.GetProperties();
-            foreach(PropertyInfo p in pi)
+            foreach (PropertyInfo p in pi)
             {
                 object value = p.GetValue(this);
                 if (value != null)

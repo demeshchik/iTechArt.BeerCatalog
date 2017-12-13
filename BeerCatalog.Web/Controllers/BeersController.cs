@@ -1,9 +1,9 @@
-﻿using BeerCatalog.API.Infrastructure;
-using BeerCatalog.API.Models;
+﻿using BeerCatalog.Web.Infrastructure;
+using BeerCatalog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace BeerCatalog.API.Controllers
+namespace BeerCatalog.Web.Controllers
 {
     [Produces("application/json")]
     [Route("api/Beers")]
@@ -11,7 +11,7 @@ namespace BeerCatalog.API.Controllers
     {
         [HttpGet]
         public IActionResult Get([FromQuery]Request request)
-        { 
+        {
             try
             {
                 string queryString = request.GetQueryString();
