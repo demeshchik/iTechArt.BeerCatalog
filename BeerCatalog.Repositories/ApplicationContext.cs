@@ -17,9 +17,10 @@ namespace BeerCatalog.Repositories
             base.OnModelCreating(builder);
 
             new UserMap(builder.Entity<User>());
+            new PreferenceMap(builder.Entity<Preference>());
+            new UserPreferenceMap(builder.Entity<UserPreference>());
             new CommentMap(builder.Entity<Comment>());
             new BrewingMap(builder.Entity<Brewing>());
-            new PreferenceMap(builder.Entity<Preference>());
         }
     }
 }

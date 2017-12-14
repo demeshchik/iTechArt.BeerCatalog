@@ -18,7 +18,6 @@ namespace BeerCatalog.Data.Mappers
                 .WithOne(p => p.Author)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(t => t.Preferences);
             builder.HasMany(t => t.Friends);
         }
     }
@@ -44,8 +43,7 @@ namespace BeerCatalog.Data.Mappers
             builder.Property(t => t.Rate).IsRequired();
 
             builder.HasMany(t => t.Comments)
-                .WithOne(t => t.Post)
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithOne(t => t.Post);
         }
     }
 
@@ -55,6 +53,22 @@ namespace BeerCatalog.Data.Mappers
         {
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Text).IsRequired();
+        }
+    }
+
+    public class UserPreferenceMap
+    {
+        public UserPreferenceMap(EntityTypeBuilder<UserPreference> builder)
+        {
+            builder.HasKey(t => new { t.UserId, t.PreferenceId });
+
+            builder.HasOne(s => s.User)
+                .WithMany(s => s.UserPreferences)
+                .HasForeignKey(u => u.UserId);
+
+            builder.HasOne(s => s.Preference)
+                .WithMany(s => s.UserPreferences)
+                .HasForeignKey(p => p.PreferenceId);
         }
     }
 }

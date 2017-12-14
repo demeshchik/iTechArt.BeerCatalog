@@ -10,7 +10,7 @@ namespace BeerCatalog.Data
         public ICollection<User> Friends { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Brewing> Posts { get; set; }
-        public ICollection<Preference> Preferences { get; set; }
+        public ICollection<UserPreference> UserPreferences { get; set; }
 
 
         public User()
@@ -18,7 +18,7 @@ namespace BeerCatalog.Data
             Friends = new List<User>();
             Comments = new List<Comment>();
             Posts = new List<Brewing>();
-            Preferences = new List<Preference>();
+            UserPreferences = new List<UserPreference>();
         }
     }
 }
