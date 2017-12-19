@@ -1,0 +1,61 @@
+.sidebar__nav {
+    padding: 0;
+
+    list-style-type: none;
+}
+
+.nav__item {
+    font-size: 25px;
+
+    padding: 10px;
+}
+
+.nav__item:after {
+    display: block;
+
+    width: 0;
+    height: 2px;
+
+    content: "";
+    transition: width 0.2s;
+
+    background: #106cc8;
+}
+
+.nav__item:hover:after {
+    width: 100%;
+}
+
+.nav__item a {
+    text-decoration: none;
+
+    color: #ffffff;
+}
+
+.sidebar {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    overflow-x: hidden;
+
+    width: 0;
+    height: 100%;
+    padding-top: 60px;
+
+    transition: 0.5s;
+
+    color: #818181;
+    background-color: #111111;
+}
+
+.sidebar_v {
+    width: 250px;
+}
+
+@media screen and (max-width: 640px) {
+    .sidebar_v {
+        width: 100%;
+    }
+}

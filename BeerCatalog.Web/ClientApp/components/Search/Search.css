@@ -1,0 +1,44 @@
+.search__name,
+.search__slider {
+    box-sizing: border-box;
+    padding-left: 10%;
+}
+
+.search__header {
+    text-align: center;
+}
+
+.search__slider {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search__advanced {
+    display: block;
+}
+
+.disabled {
+    display: none;
+}
+
+.search__field {
+    font-size: 19px;
+
+    border: none;
+    border-bottom: 1px solid #ededed;
+    outline: none;
+}
+
+.search__icon {
+    font-size: 24px;
+
+    margin-left: 5px;
+
+    color: #828282;
+}
+
+.search__basic {
+    display: flex;
+
+    justify-content: center;
+}

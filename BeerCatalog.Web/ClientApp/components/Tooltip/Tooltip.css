@@ -1,0 +1,22 @@
+.tooltip__container {
+    position: relative;
+}
+
+.tooltip__icon {
+    font-size: inherit;
+}
+
+.tooltip__container .tooltip__body {
+    color: #FFFFFF;
+    background: #000000;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 25px;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+.tooltip__icon:hover + .tooltip__body {
+    visibility: visible;
+    opacity: 0.8;
+}

@@ -1,0 +1,54 @@
+.tile {
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.tile:hover > .tile__content {
+    box-shadow: 0 0 8px 0 #7f7f7f;
+}
+
+.tile__title {
+    font-weight: normal;
+}
+
+.tile__tagline {
+    font-size: 14px;
+    font-weight: 100;
+
+    flex-grow: 1;
+}
+
+.tile__header {
+    height: 100px;
+    margin-bottom: 5px;
+
+    text-align: center;
+}
+
+.tile__content {
+    display: flex;
+
+    height: 130px;
+    padding: 15px;
+
+    color: #ffffff;
+    background: #7f7f7f;
+
+    flex-flow: column;
+}
+
+.tile__title {
+    margin: 0;
+}
+
+.tile__buttons {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1024px) {
+    .tile__content {
+        padding: 5px;
+    }
+}
