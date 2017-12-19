@@ -4,63 +4,63 @@ import PropTypes from 'prop-types';
 import './Slider.css';
 
 export default class Slider extends React.PureComponent {
-	constructor(props) {
-		super(props);
-		this.state = {
-			value: '',
-		};
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: '',
+        };
 
-		this.handleChange = this.handleChange.bind(this);
-	}
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-	static get propTypes() {
-		return {
-			onChange: PropTypes.func.isRequired,
-			containerStyle: PropTypes.string,
-			nameStyle: PropTypes.string,
-			sliderStyle: PropTypes.string,
-			name: PropTypes.string.isRequired,
-			id: PropTypes.string.isRequired,
-			min: PropTypes.string,
-			max: PropTypes.string,
-			step: PropTypes.string,
-		}
-	}
-	static get defaultProps() {
-		return {
-			containerStyle: '',
-			nameStyle: '',
-			sliderStyle: '',
-			min: 1,
-			max: 10,
-			step: 1,
-		}
-	}
+    static get propTypes() {
+        return {
+            onChange: PropTypes.func.isRequired,
+            containerStyle: PropTypes.string,
+            nameStyle: PropTypes.string,
+            sliderStyle: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
+            min: PropTypes.string,
+            max: PropTypes.string,
+            step: PropTypes.string,
+        };
+    }
+    static get defaultProps() {
+        return {
+            containerStyle: '',
+            nameStyle: '',
+            sliderStyle: '',
+            min: 1,
+            max: 10,
+            step: 1,
+        };
+    }
 
-	handleChange(event) {
-		this.setState({
-			value: event.target.value,
-		});
+    handleChange(event) {
+        this.setState({
+            value: event.target.value,
+        });
 
-		this.props.onChange({ id: event.target.id, value: event.target.value });
-	}
+        this.props.onChange({ id: event.target.id, value: event.target.value });
+    }
 
-	render() {
-		return (
+    render() {
+        return (
             <div className={this.props.containerStyle}>
                 <div className={this.props.nameStyle}>{this.props.name}</div>
                 <div className={this.props.sliderStyle}>
-					<span>{this.state.value}</span>
-					<input
-						type="range"
-						id={this.props.id}
-						min={this.props.min}
-						max={this.props.max}
-						onMouseUp={this.handleChange}
-						step={this.props.step ? this.props.step : 1}
-					/>
-				</div>
-			</div>
-		);
-	}
+                    <span>{this.state.value}</span>
+                    <input
+                        type="range"
+                        id={this.props.id}
+                        min={this.props.min}
+                        max={this.props.max}
+                        onMouseUp={this.handleChange}
+                        step={this.props.step ? this.props.step : 1}
+                    />
+                </div>
+            </div>
+        );
+    }
 }

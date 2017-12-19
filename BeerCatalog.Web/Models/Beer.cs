@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 
-namespace BeerCatalog.API.Models
+namespace BeerCatalog.Web.Models
 {
     public class Beer
     {

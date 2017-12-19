@@ -3,7 +3,6 @@
   "rules": {
     "class-methods-use-this": 0,
     "indent": ["error", 4],
-    "no-tabs": 0,
     "no-case-declarations": 0,
     "linebreak-style": ["error", "windows"],
     "react/jsx-indent": 0,

@@ -31,7 +31,7 @@ export function withFavoritesStore(WrappedComponent) {
 
         render() {
             const newProps = {
-				manageFavorite: this.props.favoriteActions.manageFavorites,
+                manageFavorite: this.props.favoriteActions.manageFavorites,
                 data: this.props.favorites.data,
                 hasMore: this.props.favorites.hasMore,
                 loadData: this.loadNewData,

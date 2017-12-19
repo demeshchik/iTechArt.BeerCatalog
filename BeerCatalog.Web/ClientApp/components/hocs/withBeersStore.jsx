@@ -26,11 +26,11 @@ export function withBeersStore(WrappedComponent) {
 
         static get propTypes() {
             return {
-				favoriteActions: PropTypes.func.isRequired,
+                favoriteActions: PropTypes.func.isRequired,
                 beerActions: PropTypes.func.isRequired,
                 beers: PropTypes.object.isRequired,
                 error: PropTypes.string.isRequired,
-            }
+            };
         }
 
         loadNewData() {
@@ -51,10 +51,10 @@ export function withBeersStore(WrappedComponent) {
                 data: this.props.beers.data,
                 hasMore: this.props.beers.hasMore,
                 loadData: this.loadNewData,
-                manageFavorite: this.props.favoriteActions
+                manageFavorite: this.props.favoriteActions,
             };
             const styles = {
-                margin: '70px auto 40px'
+                margin: '70px auto 40px',
             };
 
             return (

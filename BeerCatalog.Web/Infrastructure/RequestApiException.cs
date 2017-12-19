@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
-namespace BeerCatalog.API.Infrastructure
+namespace BeerCatalog.Web.Infrastructure
 {
     [Serializable]
     public class RequestApiException : Exception
     {
-        private HttpStatusCode _statusCode; 
+        private HttpStatusCode _statusCode;
         public HttpStatusCode StatusCode
         {
             get

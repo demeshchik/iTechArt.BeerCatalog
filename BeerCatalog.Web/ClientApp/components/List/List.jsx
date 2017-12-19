@@ -26,11 +26,12 @@ export default class List extends React.PureComponent {
         const component = this.props.name;
 
         Object.keys(targetObject).forEach((key) => {
-            const content = <ListItem
-                                key={`${component}-component-${key}`}
-                                header={key}
-                                type={component}
-                                data={targetObject[key]} />;
+            const content = (<ListItem
+                key={`${component}-component-${key}`}
+                header={key}
+                type={component}
+                data={targetObject[key]}
+            />);
 
             array.push(content);
         });

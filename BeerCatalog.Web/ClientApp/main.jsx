@@ -18,10 +18,10 @@ function renderApp() {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</Provider>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </Provider>
         </AppContainer>,
         document.getElementById('react-app'),
     );

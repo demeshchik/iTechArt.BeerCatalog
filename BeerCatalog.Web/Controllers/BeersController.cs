@@ -1,21 +1,20 @@
-﻿using BeerCatalog.API.Infrastructure;
-using BeerCatalog.API.Models;
+﻿using BeerCatalog.Web.Infrastructure;
+using BeerCatalog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace BeerCatalog.API.Controllers
+namespace BeerCatalog.Web.Controllers
 {
     [Produces("application/json")]
     [Route("api/Beers")]
     public class BeersController : Controller
     {
         [HttpGet]
-        public IActionResult Get([FromQuery]Request request)
-        { 
+        public IActionResult Get([FromQuery]ClientRequest request)
+        {
             try
             {
-                string queryString = request.GetQueryString();
-                var beers = PunkApiRequest.GetBeers(queryString);
+                var beers = PunkApiProxy.GetBeers(request);
                 return Json(beers);
             }
             catch (RequestApiException exception)
